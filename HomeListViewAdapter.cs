@@ -45,9 +45,10 @@ namespace ZAPP
             {
                 view = context.LayoutInflater.Inflate(Resource.Layout.ListRow, null);
             }
-            view.FindViewById<TextView>(Resource.Id.Text1).Text = item.name;
-            view.FindViewById<TextView>(Resource.Id.Text2).Text = item.appointmentTime;
-            view.FindViewById<TextView>(Resource.Id.Text3).Text = item.address + ", "+ item.postcode + " "+ item.city;
+            Console.WriteLine(item.appointmentTime);
+            view.FindViewById<TextView>(Resource.Id.Name).Text = item.name;
+            view.FindViewById<TextView>(Resource.Id.Date).Text = item.appointmentTime;
+            view.FindViewById<TextView>(Resource.Id.Address).Text = item.address + ", "+ item.postcode + " "+ item.city;
             return view;
         }
 

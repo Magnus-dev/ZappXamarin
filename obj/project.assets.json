@@ -1490,11 +1490,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MagnusLaptop\\source\\repos\\ZAPP\\ZAPP.csproj",
+      "projectUniqueName": "C:\\Users\\MagnusLaptop\\Source\\Repos\\Magnus-dev\\ZappXamarrin\\ZAPP.csproj",
       "projectName": "ZAPP",
-      "projectPath": "C:\\Users\\MagnusLaptop\\source\\repos\\ZAPP\\ZAPP.csproj",
+      "projectPath": "C:\\Users\\MagnusLaptop\\Source\\Repos\\Magnus-dev\\ZappXamarrin\\ZAPP.csproj",
       "packagesPath": "C:\\Users\\MagnusLaptop\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MagnusLaptop\\source\\repos\\ZAPP\\obj\\",
+      "outputPath": "C:\\Users\\MagnusLaptop\\Source\\Repos\\Magnus-dev\\ZappXamarrin\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
