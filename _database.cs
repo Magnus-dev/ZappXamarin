@@ -91,7 +91,7 @@ namespace ZAPP
 
 
         }
-        private SqliteConnection getDatabase()
+        public SqliteConnection getDatabase()
         {
             Resources res = this.context.Resources;
             string app_name =
@@ -119,7 +119,7 @@ namespace ZAPP
             }
 
         }
-        private int writeToTable(string command, SqliteConnection conn)
+        public int writeToTable(string command, SqliteConnection conn)
         {
             int result;
             if (conn != null)
@@ -202,15 +202,15 @@ namespace ZAPP
             JsonValue valuesAppointment = downloadData("ZappAppointment");
             foreach (JsonObject result in valuesAppointment)
             {
-                Console.WriteLine(result.ToString());
+                //Console.WriteLine(result.ToString());
                 AppointmentRecord record = new AppointmentRecord(result);
                 Console.WriteLine(this.writeToTable(record.createRecordString(), conn));
             }
             JsonValue valuesTasks = downloadData("ZappTasks");
-            Console.WriteLine(valuesTasks.ToString());
+            //Console.WriteLine(valuesTasks.ToString());
             foreach (JsonObject result in valuesTasks)
             {
-                Console.WriteLine(result.ToString());
+                //Console.WriteLine(result.ToString());
                 ToDoesRecord record = new ToDoesRecord(result);
                 Console.WriteLine(this.writeToTable(record.createRecordString(), conn));
             }
@@ -236,10 +236,10 @@ namespace ZAPP
                         {
                             list.Add(new AppointmentRecord(datatable));
                         }
-                        foreach (AppointmentRecord row in list)
-                        {
-                            Console.WriteLine(row.id);
-                        }
+                        //foreach (AppointmentRecord row in list)
+                        //{
+                        //    Console.WriteLine(row.id);
+                        //}
 
                     }
                     conn.Close();
@@ -273,10 +273,10 @@ namespace ZAPP
                         {
                             list.Add(new ToDoesRecord(datatable));
                         }
-                        foreach (ToDoesRecord row in list)
-                        {
-                            Console.WriteLine(row.id);
-                        }
+                        //foreach (ToDoesRecord row in list)
+                        //{
+                        //    Console.WriteLine(row.id);
+                        //}
 
                     }
                     conn.Close();

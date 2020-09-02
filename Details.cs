@@ -29,6 +29,7 @@ namespace ZAPP
             records = new List<TaskRecord>();
             foreach (ToDoesRecord value in result)
             {
+                Console.WriteLine(value._id);
                 TaskRecord row = new TaskRecord(value);
                 records.Add(row);
             }
@@ -50,6 +51,8 @@ namespace ZAPP
         }
         protected void OnListItemClick(object sender, Android.Widget.AdapterView.ItemClickEventArgs e)
         {
+            //var t = records[e.Position];
+            //t.switchCompleted();
 
         }
     }

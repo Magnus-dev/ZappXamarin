@@ -18,10 +18,13 @@ namespace ZAPP
         List<TaskRecord> items;
         Activity context;
         // Context context;
+        CheckBox checkBox;
+        _database db; 
         public TaskListViewAdapter(Activity context, List<TaskRecord> items) : base()
         {
             this.context = context;
             this.items = items;
+            this.db= new _database(context);
         }
         public override TaskRecord this[int position]
         {
@@ -46,20 +49,35 @@ namespace ZAPP
                 view = context.LayoutInflater.Inflate(Resource.Layout.TaskListRow, null);
             }
             view.FindViewById<TextView>(Resource.Id.Task1).Text = item.Description;
-            if(item.Completed ==1)
-            {
-                view.FindViewById<TextView>(Resource.Id.Task2).Text = " Completed";
-            }
-            else
-            {
-                view.FindViewById<TextView>(Resource.Id.Task2).Text = "NOT";
-            }
+            
+                checkBox = view.FindViewById<CheckBox>(Resource.Id.Completed);
+                    if (item.Completed == 1)
+                    {
+                        checkBox.Checked = true;
+                    }
+                    else
+                    {
+                        checkBox.Checked = false;
+                
+                    }
+            checkBox.Click += delegate
+                {
+                    CheckboxClicked(item);
+                };
+
+
+           
            
             //view.FindViewById<TextView>(Resource.Id.Text3).Text = item.address + ", " + item.postcode + " " + item.city;
             return view;
         }
 
-
+        private void CheckboxClicked(TaskRecord item)
+        {
+            Console.WriteLine(item._id.ToString());
+            string query = item.switchCompleted();
+            db.writeToTable(query, db.getDatabase());
+        }
     }
 
     class TaskListViewAdapterViewHolder : Java.Lang.Object

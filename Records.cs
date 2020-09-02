@@ -10,6 +10,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Javax.Security.Auth;
 using Mono.Data.Sqlite;
 
 namespace ZAPP
@@ -95,6 +96,7 @@ namespace ZAPP
         {
             this.description = (string)record["Description"];
             this.completed = 0;
+            this._id = (string)record["_id"];
 
             JsonObject Appointment = (JsonObject)record["Appointment"];
             this.appointmentId = (string)Appointment["_id"];
@@ -103,7 +105,7 @@ namespace ZAPP
         {
             this.id = (int)(Int64)record["id"];
             this.description = (string)record["description"];
-            this.completed = 0;
+            this.completed = (int)record["completed"];
             this._id = (string)record["_id"];
             this.appointmentId = (string)record["appointmentId"];
         }
@@ -131,6 +133,21 @@ namespace ZAPP
             return record;
         }
 
+        public string switchCompleted()
+        {
+            int status; 
+            if(this.completed == 1)
+            {
+                status = 0;
+            }
+            else
+            {
+                status = 1;
+            }
+
+            string record = "UPDATE todoes SET completed = " +status +  " WHERE _id = '"+this._id+ "';";
+            return record;
+        }
 
     }
     public class UserRecord

@@ -3363,6 +3363,9 @@ namespace ZAPP
 			// aapt resource value: 0x7F08003D
 			public const int collapseActionView = 2131230781;
 			
+			// aapt resource value: 0x7F080003
+			public const int Completed = 2131230723;
+			
 			// aapt resource value: 0x7F08003E
 			public const int container = 2131230782;
 			
@@ -3384,8 +3387,8 @@ namespace ZAPP
 			// aapt resource value: 0x7F080043
 			public const int customPanel = 2131230787;
 			
-			// aapt resource value: 0x7F080003
-			public const int Date = 2131230723;
+			// aapt resource value: 0x7F080004
+			public const int Date = 2131230724;
 			
 			// aapt resource value: 0x7F080044
 			public const int decor_content_parent = 2131230788;
@@ -3456,8 +3459,8 @@ namespace ZAPP
 			// aapt resource value: 0x7F08005A
 			public const int frameLayout1 = 2131230810;
 			
-			// aapt resource value: 0x7F080004
-			public const int FUNCTION = 2131230724;
+			// aapt resource value: 0x7F080005
+			public const int FUNCTION = 2131230725;
 			
 			// aapt resource value: 0x7F08005B
 			public const int ghost_view = 2131230811;
@@ -3486,8 +3489,8 @@ namespace ZAPP
 			// aapt resource value: 0x7F080063
 			public const int imageView1 = 2131230819;
 			
-			// aapt resource value: 0x7F080005
-			public const int ImgLayout = 2131230725;
+			// aapt resource value: 0x7F080006
+			public const int ImgLayout = 2131230726;
 			
 			// aapt resource value: 0x7F080064
 			public const int info = 2131230820;
@@ -3525,14 +3528,14 @@ namespace ZAPP
 			// aapt resource value: 0x7F08006F
 			public const int list_item = 2131230831;
 			
-			// aapt resource value: 0x7F080006
-			public const int LoginButton = 2131230726;
-			
 			// aapt resource value: 0x7F080007
-			public const int LoginLayout = 2131230727;
+			public const int LoginButton = 2131230727;
 			
 			// aapt resource value: 0x7F080008
-			public const int LogoImg = 2131230728;
+			public const int LoginLayout = 2131230728;
+			
+			// aapt resource value: 0x7F080009
+			public const int LogoImg = 2131230729;
 			
 			// aapt resource value: 0x7F080070
 			public const int masked = 2131230832;
@@ -3540,8 +3543,8 @@ namespace ZAPP
 			// aapt resource value: 0x7F080071
 			public const int message = 2131230833;
 			
-			// aapt resource value: 0x7F080009
-			public const int META = 2131230729;
+			// aapt resource value: 0x7F08000A
+			public const int META = 2131230730;
 			
 			// aapt resource value: 0x7F080072
 			public const int middle = 2131230834;
@@ -3558,8 +3561,8 @@ namespace ZAPP
 			// aapt resource value: 0x7F080076
 			public const int multiply = 2131230838;
 			
-			// aapt resource value: 0x7F08000A
-			public const int Name = 2131230730;
+			// aapt resource value: 0x7F08000B
+			public const int Name = 2131230731;
 			
 			// aapt resource value: 0x7F080077
 			public const int navigation_header_container = 2131230839;
@@ -3585,8 +3588,8 @@ namespace ZAPP
 			// aapt resource value: 0x7F08007E
 			public const int outline = 2131230846;
 			
-			// aapt resource value: 0x7F08000B
-			public const int Overview = 2131230731;
+			// aapt resource value: 0x7F08000C
+			public const int Overview = 2131230732;
 			
 			// aapt resource value: 0x7F08007F
 			public const int parallax = 2131230847;
@@ -3612,8 +3615,8 @@ namespace ZAPP
 			// aapt resource value: 0x7F080086
 			public const int registerTime = 2131230854;
 			
-			// aapt resource value: 0x7F08000C
-			public const int RegistrationButton = 2131230732;
+			// aapt resource value: 0x7F08000D
+			public const int RegistrationButton = 2131230733;
 			
 			// aapt resource value: 0x7F080087
 			public const int right = 2131230855;
@@ -3687,8 +3690,8 @@ namespace ZAPP
 			// aapt resource value: 0x7F08009D
 			public const int select_dialog_listview = 2131230877;
 			
-			// aapt resource value: 0x7F08000D
-			public const int SHIFT = 2131230733;
+			// aapt resource value: 0x7F08000E
+			public const int SHIFT = 2131230734;
 			
 			// aapt resource value: 0x7F08009F
 			public const int shortcut = 2131230879;
@@ -3747,8 +3750,8 @@ namespace ZAPP
 			// aapt resource value: 0x7F0800B1
 			public const int submit_area = 2131230897;
 			
-			// aapt resource value: 0x7F08000E
-			public const int SYM = 2131230734;
+			// aapt resource value: 0x7F08000F
+			public const int SYM = 2131230735;
 			
 			// aapt resource value: 0x7F0800B2
 			public const int tabMode = 2131230898;
@@ -3762,11 +3765,8 @@ namespace ZAPP
 			// aapt resource value: 0x7F0800B5
 			public const int tag_unhandled_key_listeners = 2131230901;
 			
-			// aapt resource value: 0x7F08000F
-			public const int Task1 = 2131230735;
-			
 			// aapt resource value: 0x7F080010
-			public const int Task2 = 2131230736;
+			public const int Task1 = 2131230736;
 			
 			// aapt resource value: 0x7F080011
 			public const int Tasks = 2131230737;

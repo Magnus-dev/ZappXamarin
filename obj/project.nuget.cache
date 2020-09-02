@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0jYdy/P//7WECFF5GC5a3jr/vl6QfUvIXmIIRsLEB4/Lv+Z5IcI7+40DjjPadBL8CvbCBB2FRkwfef/P8Sl5hw==",
+  "dgSpecHash": "/1+URUybLu7Z7g/5QeYgEZjXwWNQsh6FbBtJMhF0CBsTevbq47DPhCHRSh7/lUc5O4Ar2XOR0ZtOc87jQComAg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\MagnusLaptop\\Source\\Repos\\Magnus-dev\\ZappXamarrin\\ZAPP.csproj",
+  "projectFilePath": "C:\\Users\\MagnusLaptop\\source\\repos\\Magnus-dev\\ZappXamarrin\\ZAPP.csproj",
   "expectedPackageFiles": [
     "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.android.arch.core.common\\1.1.1.3\\xamarin.android.arch.core.common.1.1.1.3.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.android.arch.core.runtime\\1.1.1.3\\xamarin.android.arch.core.runtime.1.1.1.3.nupkg.sha512",

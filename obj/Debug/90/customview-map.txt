@@ -11,6 +11,7 @@ bitmap;obj\Debug\90\res\drawable\splash_background.xml
 Button;obj\Debug\90\res\layout\detail.xml
 Button;obj\Debug\90\res\layout\login.xml
 cache-path;C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\lp\35\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+CheckBox;obj\Debug\90\res\layout\tasklistrow.xml
 color;obj\Debug\90\res\values\colors.xml
 color;obj\Debug\90\res\values\ic_launcher_background.xml
 dimen;obj\Debug\90\res\values\dimens.xml
