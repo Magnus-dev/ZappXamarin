@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 
 using Android.App;
@@ -10,6 +11,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Org.Apache.Http.Client;
 
 namespace ZAPP
 {
@@ -20,6 +22,7 @@ namespace ZAPP
         ListView listView;
         List<TaskRecord> records;
         ArrayList result;
+        View v;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -37,22 +40,63 @@ namespace ZAPP
             listView = FindViewById<ListView>(Resource.Id.TasksOverview);
             listView.Adapter = new TaskListViewAdapter(this, records);
             listView.ItemClick += OnListItemClick;
+            Button RegisterButton = FindViewById<Button>(Resource.Id.registerTime);
 
-            
+            RegisterButton.Click += delegate
+            {
+                RegisterButtonClicked();
+            };
 
-            //SetContentView(Resource.Layout.Detail);
-            //layout = FindViewById<LinearLayout>(Resource.Id.Details);
-            //layout.FindViewById<TextView>(Resource.Id.TextD1).Text = id;
-            //layout.FindViewById<TextView>(Resource.Id.TextD2).Text = code;
-            //layout.FindViewById<TextView>(Resource.Id.TextD3).Text = description;
-            base.OnCreate(savedInstanceState);
-
-            // Create your application here
         }
         protected void OnListItemClick(object sender, Android.Widget.AdapterView.ItemClickEventArgs e)
         {
-            //var t = records[e.Position];
-            //t.switchCompleted();
+            var t = records[e.Position];
+            //var intent = new Intent(this, typeof(Detail));
+            //intent.PutExtra("ID", t.AppointmentId);
+            t.switchCompleted(this);
+            //StartActivityForResult(intent, 0);
+            
+                
+            ListView listView = sender as ListView;
+            var itemView = listView.GetChildAt(e.Position - listView.FirstVisiblePosition);
+
+            ImageView taskCheck = itemView.FindViewById<ImageView>(Resource.Id.Completed);
+            if(t.Completed == 1)
+            {
+                taskCheck.Visibility = ViewStates.Visible;
+            }
+            else
+            {
+                taskCheck.Visibility = ViewStates.Invisible;
+            }
+
+
+
+
+
+        }
+        protected void RegisterButtonClicked()
+        {
+            var _id = Intent.GetStringExtra("ID");
+            var webClient = new WebClient();
+            //HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://192.168.1.21:8080/api/collections/save/ZappAppointment?token=011c00c3da03302a6c353ae054176b");
+            //request.Method = "POST";
+            //request.ContentType = "application/json";
+
+
+            webClient.Encoding = Encoding.UTF8;
+            webClient.Headers.Add("Content-Type", "application/json");
+            Uri url = new Uri("http://192.168.1.21:8080/api/collections/save/ZappAppointment?token=011c00c3da03302a6c353ae054176b");
+            //string content = @"{""data"" :{ ""_id"":"""+_id+@""" ""StartTime"": ""1234""}}";
+            string content = "{  \"data\" :{ \"_id\":\""+_id+"\",\"StartTime\": \"2020/09/02T16:30:00.000\"}}";
+            //string content = '{"data" : { "Postcode": "1234"}}';
+            Console.WriteLine(content);
+            string message = webClient.UploadString(url, "POST", content);
+           
+            //var intent = new Intent(this, typeof(Home));
+
+            //StartActivityForResult(intent, 0);
+            Console.WriteLine("Feedback Message"+message);
 
         }
     }

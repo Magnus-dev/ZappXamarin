@@ -21,22 +21,22 @@
             android:id="@+id/linearLayout1">
             <TextView
                 android:id="@+id/Task1"
-                android:layout_width="332.4dp"
+                android:layout_width="333.6dp"
                 android:layout_height="match_parent"
                 android:textColor="#000000"
                 android:textSize="20dip"
                 android:textStyle="bold"
                 android:text="Placeholder"
                 android:layout_marginRight="0.0dp" />
-            
-            <CheckBox
-                
-                android:layout_width="wrap_content"
+            <ImageView
+                android:src="@drawable/abc_btn_check_to_on_mtrl_015"
+                android:layout_width="53.2dp"
+                android:tint="#3aaa35"
                 android:layout_height="match_parent"
-                android:textAlignment="viewEnd"
-                android:checked="true"
-                
-                android:id="@+id/Completed" />
+                android:id="@+id/Completed"
+                android:paddingRight="5dp"/>
+
+
         </LinearLayout>
         
     </LinearLayout>

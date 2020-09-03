@@ -544,3 +544,4 @@ C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\stamp\_C
 C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\stamp\_GenerateJavaStubs.stamp
 C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\stamp\_ResolveLibraryProjectImports.stamp
+C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\res\drawable\check.png

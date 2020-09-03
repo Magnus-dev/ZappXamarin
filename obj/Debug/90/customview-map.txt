@@ -25,6 +25,7 @@ FrameLayout;obj\Debug\90\res\layout\login.xml
 ImageView;obj\Debug\90\res\layout\detail.xml
 ImageView;obj\Debug\90\res\layout\home.xml
 ImageView;obj\Debug\90\res\layout\login.xml
+ImageView;obj\Debug\90\res\layout\tasklistrow.xml
 include;obj\Debug\90\res\layout\activity_main.xml
 item;obj\Debug\90\res\menu\menu_main.xml
 item;obj\Debug\90\res\values\styles.xml

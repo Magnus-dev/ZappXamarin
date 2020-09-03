@@ -26,20 +26,24 @@ namespace ZAPP
             this.AppointmentId = record.appointmentId;
 
         }
-        public string switchCompleted()
+        public void switchCompleted(Context context)
         {
+            _database db = new _database(context);
             int status;
             if (this.Completed == 1)
             {
-                status = 0;
+                //status = 0;
+                this.Completed = 0;
             }
             else
             {
-                status = 1;
+                this.Completed = 1;
             }
 
-            string record = "UPDATE todoes SET completed = " + status + " WHERE _id = '" + this._id + "';";
-            return record;
+            string query = "UPDATE todoes SET completed = " + this.Completed + " WHERE _id = '" + this._id + "';";
+            Console.WriteLine(query);
+            db.writeToTable(query, db.getDatabase());
+            
         }
     }
 }

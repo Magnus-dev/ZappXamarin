@@ -18,13 +18,13 @@ namespace ZAPP
         List<TaskRecord> items;
         Activity context;
         // Context context;
-        CheckBox checkBox;
-        _database db; 
+        ImageView checkBox;
+        //_database db; 
         public TaskListViewAdapter(Activity context, List<TaskRecord> items) : base()
         {
             this.context = context;
             this.items = items;
-            this.db= new _database(context);
+            //this.db= new _database(context);
         }
         public override TaskRecord this[int position]
         {
@@ -50,15 +50,15 @@ namespace ZAPP
             }
             view.FindViewById<TextView>(Resource.Id.Task1).Text = item.Description;
             
-                checkBox = view.FindViewById<CheckBox>(Resource.Id.Completed);
+                checkBox = view.FindViewById<ImageView>(Resource.Id.Completed);
                     if (item.Completed == 1)
                     {
-                        checkBox.Checked = true;
+                        checkBox.Visibility = ViewStates.Visible;
                     }
                     else
                     {
-                        checkBox.Checked = false;
-                
+                        checkBox.Visibility = ViewStates.Invisible;
+
                     }
             checkBox.Click += delegate
                 {
@@ -75,8 +75,8 @@ namespace ZAPP
         private void CheckboxClicked(TaskRecord item)
         {
             Console.WriteLine(item._id.ToString());
-            string query = item.switchCompleted();
-            db.writeToTable(query, db.getDatabase());
+           item.switchCompleted(context);
+
         }
     }
 
