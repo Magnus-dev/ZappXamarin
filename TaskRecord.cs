@@ -45,5 +45,6 @@ namespace ZAPP
             db.writeToTable(query, db.getDatabase());
             
         }
+        
     }
 }

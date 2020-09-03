@@ -23,10 +23,11 @@ namespace ZAPP
         List<TaskRecord> records;
         ArrayList result;
         View v;
+        _database db;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            _database db = new _database(this);
+            db = new _database(this);
             var _id = Intent.GetStringExtra("ID");
             result = (ArrayList)db.showAppointmentTasks(_id);
             records = new List<TaskRecord>();
@@ -79,24 +80,15 @@ namespace ZAPP
         {
             var _id = Intent.GetStringExtra("ID");
             var webClient = new WebClient();
-            //HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://192.168.1.21:8080/api/collections/save/ZappAppointment?token=011c00c3da03302a6c353ae054176b");
-            //request.Method = "POST";
-            //request.ContentType = "application/json";
-
-
             webClient.Encoding = Encoding.UTF8;
             webClient.Headers.Add("Content-Type", "application/json");
             Uri url = new Uri("http://192.168.1.21:8080/api/collections/save/ZappAppointment?token=011c00c3da03302a6c353ae054176b");
-            //string content = @"{""data"" :{ ""_id"":"""+_id+@""" ""StartTime"": ""1234""}}";
             string content = "{  \"data\" :{ \"_id\":\""+_id+"\",\"StartTime\": \"2020/09/02T16:30:00.000\"}}";
-            //string content = '{"data" : { "Postcode": "1234"}}';
-            Console.WriteLine(content);
+            //Console.WriteLine(content);
             string message = webClient.UploadString(url, "POST", content);
-           
-            //var intent = new Intent(this, typeof(Home));
 
-            //StartActivityForResult(intent, 0);
-            Console.WriteLine("Feedback Message"+message);
+            string query = "UPDATE appointment SET startTime = '2020/09.02T16:30:00.00' WHERE _id = '" + _id + "';";
+            db.writeToTable(query, db.getDatabase());
 
         }
     }
