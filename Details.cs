@@ -82,12 +82,13 @@ namespace ZAPP
             var webClient = new WebClient();
             webClient.Encoding = Encoding.UTF8;
             webClient.Headers.Add("Content-Type", "application/json");
-            Uri url = new Uri("http://192.168.1.21:8080/api/collections/save/ZappAppointment?token=011c00c3da03302a6c353ae054176b");
-            string content = "{  \"data\" :{ \"_id\":\""+_id+"\",\"StartTime\": \"2020/09/02T16:30:00.000\"}}";
+            string now = DateTime.Now.ToString();
+            Uri url = new Uri(Constant.HomeUrl+Constant.SaveAppointmentUrl+Constant.ApiTokenString);
+            string content = "{  \"data\" :{ \"_id\":\""+_id+"\",\"StartTime\": \""+now+"\"}}";
             //Console.WriteLine(content);
             string message = webClient.UploadString(url, "POST", content);
-
-            string query = "UPDATE appointment SET startTime = '2020/09.02T16:30:00.00' WHERE _id = '" + _id + "';";
+            Console.WriteLine(url);
+            string query = "UPDATE appointment SET startTime = '" + now + "' WHERE _id = '" + _id + "';";
             db.writeToTable(query, db.getDatabase());
 
         }

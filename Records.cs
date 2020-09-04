@@ -145,7 +145,7 @@ namespace ZAPP
                 status = 1;
             }
 
-            string record = "UPDATE todoes SET completed = " +status +  " WHERE _id = '"+this._id+ "';";
+            string record = "UPDATE todoes SET completed = "+status +" WHERE _id = '"+this._id+ "';";
             return record;
         }
 
