@@ -52,8 +52,8 @@ namespace ZAPP
             this.city = (string)record["city"];
             this.appointmentTime = (string)record["appointmentTime"];
             this._id = (string)record["_id"];
-            this.startTime = null;
-            this.endTime = null;
+            this.startTime = (string)record["startTime"];
+            this.endTime = (string)record["endTime"];
         }
         public string createRecordString()
         {
@@ -61,24 +61,27 @@ namespace ZAPP
                 "           Values('" + this.name + "', '" + this.address + "', '" + this.postcode + "', '" + this.city + "', '" + this.appointmentTime + "', '" + this.startTime + "', '" + this.endTime + "', '" + this._id + "');";
             return record;
         }
-        /* public string createManyRecordsString(JsonArray records)
-         {
-
-             string result = "insert into data (code, description) Values";
-             foreach (JsonValue record in records)
-             {
-                 result += "(" + record["code"] + ", " + record["description"] + "), ";
-             }
-             result += ";";
-
-             return result;
-         }*/
         public static string getRecords()
         {
             string record = "select id, name, address, postcode, city, appointmentTime, startTime, endTime, _id from appointment;";
             return record;
         }
+        public void SetStartTime(_database db, string now)
+        {
+            string query = "UPDATE appointment SET startTime = '" +now + "' WHERE _id = '" + this._id + "';";
+            Console.WriteLine(query);
+            db.writeToTable(query);
+            this.startTime = now;
 
+        }
+        public void SetEndTime(_database db, string now)
+        {
+            string query = "UPDATE appointment SET endTime = '" + now + "' WHERE _id = '" + this._id + "';";
+            Console.WriteLine(query);
+            db.writeToTable(query);
+            this.endTime = now;
+
+        }
 
     }
     public class ToDoesRecord

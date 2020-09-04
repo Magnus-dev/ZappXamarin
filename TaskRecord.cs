@@ -42,7 +42,7 @@ namespace ZAPP
 
             string query = "UPDATE todoes SET completed = " + this.Completed + " WHERE _id = '" + this._id + "';";
             Console.WriteLine(query);
-            db.writeToTable(query, db.getDatabase());
+            db.writeToTable(query);
             
         }
         

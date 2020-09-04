@@ -11,7 +11,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Org.Apache.Http.Client;
+
 
 namespace ZAPP
 {
@@ -47,7 +47,6 @@ namespace ZAPP
             {
                 RegisterButtonClicked();
             };
-
         }
         protected void OnListItemClick(object sender, Android.Widget.AdapterView.ItemClickEventArgs e)
         {
@@ -70,11 +69,6 @@ namespace ZAPP
             {
                 taskCheck.Visibility = ViewStates.Invisible;
             }
-
-
-
-
-
         }
         protected void RegisterButtonClicked()
         {
@@ -82,14 +76,34 @@ namespace ZAPP
             var webClient = new WebClient();
             webClient.Encoding = Encoding.UTF8;
             webClient.Headers.Add("Content-Type", "application/json");
+            Uri url = new Uri(Constant.HomeUrl + Constant.SaveAppointmentUrl + Constant.ApiTokenString);
+            AppointmentRecord record = db.getAppointmentFromTable(_id);
             string now = DateTime.Now.ToString();
-            Uri url = new Uri(Constant.HomeUrl+Constant.SaveAppointmentUrl+Constant.ApiTokenString);
-            string content = "{  \"data\" :{ \"_id\":\""+_id+"\",\"StartTime\": \""+now+"\"}}";
-            //Console.WriteLine(content);
-            string message = webClient.UploadString(url, "POST", content);
-            Console.WriteLine(url);
-            string query = "UPDATE appointment SET startTime = '" + now + "' WHERE _id = '" + _id + "';";
-            db.writeToTable(query, db.getDatabase());
+            //Console.WriteLine(record.startTime.Length);
+            if (record.startTime.Length==0)
+            {
+                string content = "{  \"data\" :{ \"_id\":\"" + _id + "\", \"StartTime\": \"" + now + "\"}}";
+                //Console.WriteLine(content);
+                string message = webClient.UploadString(url, "POST", content);
+                Console.WriteLine(url);
+                record.SetStartTime(db, now);
+            }
+            else
+            {
+                if (record.endTime.Length == 0)
+                {
+                    string content = "{  \"data\" :{ \"_id\":\"" + _id + "\", \"EndTime\": \"" + now + "\"}}";
+                    //Console.WriteLine(content);
+                    string message = webClient.UploadString(url, "POST", content);
+                    Console.WriteLine(url);
+                    record.SetEndTime(db, now);
+                }
+                
+            }
+
+
+
+
 
         }
     }

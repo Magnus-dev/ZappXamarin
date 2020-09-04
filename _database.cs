@@ -27,9 +27,7 @@ namespace ZAPP
     public class _database
     {
         private Context context;
-        private string url = "http://192.168.178.19:8080/api/collections/";
-        private string apiKey = "011c00c3da03302a6c353ae054176b";
-
+ 
 
         public void createDatabase()
         {
@@ -119,8 +117,9 @@ namespace ZAPP
             }
 
         }
-        public int writeToTable(string command, SqliteConnection conn)
+        public int writeToTable(string command)
         {
+            var conn = getDatabase();
             int result;
             if (conn != null)
             {
@@ -145,9 +144,38 @@ namespace ZAPP
                 return 0;
             }
         }
-        private SqliteDataReader getFromTheTable(string command, SqliteConnection conn)
+        public int writeToTable(string command, SqliteConnection conn)
+        {
+            
+            int result;
+            if (conn != null)
+            {
+                using (conn)
+                {
+                    conn.Open();
+                    using (var cmd = conn.CreateCommand())
+                    {
+                        Console.WriteLine(command);
+                        cmd.CommandText = command;
+                        cmd.CommandType = CommandType.Text;
+                        result = cmd.ExecuteNonQuery();
+                    }
+                    conn.Close();
+
+                    return result;
+                }
+
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        public AppointmentRecord getAppointmentFromTable(string _id)
         {
             SqliteDataReader result;
+            var conn = getDatabase();
+            string command = "select id, name, address, postcode, city, appointmentTime, startTime, endTime, _id from appointment where _id = '" + _id + "';";
             if (conn != null)
             {
                 using (conn)
@@ -160,9 +188,10 @@ namespace ZAPP
                         cmd.CommandType = CommandType.Text;
                         result = cmd.ExecuteReader();
                     }
+                    AppointmentRecord record = new AppointmentRecord(result);
                     conn.Close();
                     //Console.WriteLine(result.ToString());
-                    return result;
+                    return record;
                 }
 
             }
@@ -183,7 +212,7 @@ namespace ZAPP
             try
             {
                 //Download data from the API from table {table}
-                byte[] myDataBuffer = webClient.DownloadData(this.url + "get/" + table + "?token=" + apiKey);
+                byte[] myDataBuffer = webClient.DownloadData(Constant.HomeUrl +table+ Constant.ApiTokenString);
                 string download = Encoding.ASCII.GetString(myDataBuffer);
                 JsonValue value = JsonValue.Parse(download);
                 JsonValue values = value["entries"];
@@ -199,14 +228,14 @@ namespace ZAPP
         private void ApiProcessing()
         {
             var conn = getDatabase();
-            JsonValue valuesAppointment = downloadData("ZappAppointment");
+            JsonValue valuesAppointment = downloadData(Constant.GetAppointmentUrl);
             foreach (JsonObject result in valuesAppointment)
             {
                 //Console.WriteLine(result.ToString());
                 AppointmentRecord record = new AppointmentRecord(result);
                 Console.WriteLine(this.writeToTable(record.createRecordString(), conn));
             }
-            JsonValue valuesTasks = downloadData("ZappTasks");
+            JsonValue valuesTasks = downloadData(Constant.GetTasksUrl);
             //Console.WriteLine(valuesTasks.ToString());
             foreach (JsonObject result in valuesTasks)
             {
@@ -236,22 +265,11 @@ namespace ZAPP
                         {
                             list.Add(new AppointmentRecord(datatable));
                         }
-                        //foreach (AppointmentRecord row in list)
-                        //{
-                        //    Console.WriteLine(row.id);
-                        //}
-
                     }
                     conn.Close();
-                    //Console.WriteLine(result.ToString());
-                    //return result;
                 }
             }
             return list;
-            // SqliteDataReader datatable = this.getFromTheTable(command, conn);
-
-
-            //return list;
         }
         public ArrayList showAppointmentTasks(string _id)
         {
@@ -273,22 +291,11 @@ namespace ZAPP
                         {
                             list.Add(new ToDoesRecord(datatable));
                         }
-                        //foreach (ToDoesRecord row in list)
-                        //{
-                        //    Console.WriteLine(row.id);
-                        //}
-
                     }
                     conn.Close();
-                    //Console.WriteLine(result.ToString());
-                    //return result;
                 }
             }
             return list;
-            // SqliteDataReader datatable = this.getFromTheTable(command, conn);
-
-
-            //return list;
         }
         //    public ArrayList showAllTaskData()
         //    {
