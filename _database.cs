@@ -218,7 +218,9 @@ namespace ZAPP
             }
             catch (WebException)
             {
+                Console.WriteLine("Could not connect to WebAPI. Please check Connection");
                 return null;
+                
                 //Doe vooralsnog niks, straks wellicht een boolean terug.
                 // geven of e.e.a. gelukt is of niet
             }
@@ -230,6 +232,7 @@ namespace ZAPP
             ArrayList appointment_db = this.showAllAppointmentData();
 
             JsonValue valuesAppointment = downloadData(Constant.GetAppointmentUrl);
+            if(valuesAppointment != null) { 
             foreach (JsonObject result in valuesAppointment)
             {
                 //Console.WriteLine(result.ToString());
@@ -245,20 +248,20 @@ namespace ZAPP
             }
             JsonValue valuesTasks = downloadData(Constant.GetTasksUrl);
             ArrayList tasks_db = this.showAppointmentTasks();
-            //Console.WriteLine(valuesTasks.ToString());
-            foreach (JsonObject result in valuesTasks)
-            {
-                //Console.WriteLine(result.ToString());
-                ToDoesRecord record = new ToDoesRecord(result);
-                if(EntryIsinLocalDB(tasks_db, record))
+                //Console.WriteLine(valuesTasks.ToString());
+                foreach (JsonObject result in valuesTasks)
                 {
-                    Console.WriteLine(this.writeToTable(record.updateRecordString(), conn));
+                    //Console.WriteLine(result.ToString());
+                    ToDoesRecord record = new ToDoesRecord(result);
+                    if (EntryIsinLocalDB(tasks_db, record))
+                    {
+                        Console.WriteLine(this.writeToTable(record.updateRecordString(), conn));
+                    }
+                    else
+                    {
+                        Console.WriteLine(this.writeToTable(record.createRecordString(), conn));
+                    }
                 }
-                else
-                {
-                    Console.WriteLine(this.writeToTable(record.createRecordString(), conn));
-                }
-                
             }
         }
         public ArrayList showAllAppointmentData()

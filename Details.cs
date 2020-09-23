@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 using Android.App;
@@ -11,7 +12,8 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-
+using Java.Security;
+using System.Threading.Tasks;
 
 namespace ZAPP
 {
@@ -76,29 +78,41 @@ namespace ZAPP
             var webClient = new WebClient();
             webClient.Encoding = Encoding.UTF8;
             webClient.Headers.Add("Content-Type", "application/json");
-            Uri url = new Uri(Constant.HomeUrl + Constant.SaveAppointmentUrl + Constant.ApiTokenString);
-            AppointmentRecord record = db.getAppointmentFromTable(_id);
-            string now = DateTime.Now.ToString();
-            //Console.WriteLine(record.startTime.Length);
-            if (record.startTime.Length==0)
+            try
             {
-                string content = "{  \"data\" :{ \"_id\":\"" + _id + "\", \"StartTime\": \"" + now + "\"}}";
-                //Console.WriteLine(content);
-                string message = webClient.UploadString(url, "POST", content);
-                Console.WriteLine(url);
-                record.SetStartTime(db, now);
-            }
-            else
-            {
-                if (record.endTime.Length == 0)
+                Uri url = new Uri(Constant.HomeUrl + Constant.SaveAppointmentUrl + Constant.ApiTokenString);
+                AppointmentRecord record = db.getAppointmentFromTable(_id);
+                string now = DateTime.Now.ToString();
+                //Console.WriteLine(record.startTime.Length);
+                if (record.startTime.Length == 0)
                 {
-                    string content = "{  \"data\" :{ \"_id\":\"" + _id + "\", \"EndTime\": \"" + now + "\"}}";
+                    string content = "{  \"data\" :{ \"_id\":\"" + _id + "\", \"StartTime\": \"" + now + "\"}}";
                     //Console.WriteLine(content);
                     string message = webClient.UploadString(url, "POST", content);
                     Console.WriteLine(url);
-                    record.SetEndTime(db, now);
+                    record.SetStartTime(db, now);
                 }
-                
+                else
+                {
+                    if (record.endTime.Length == 0)
+                    {
+                        string content = "{  \"data\" :{ \"_id\":\"" + _id + "\", \"EndTime\": \"" + now + "\"}}";
+                        //Console.WriteLine(content);
+                        string message = webClient.UploadString(url, "POST", content);
+                        Console.WriteLine(url);
+                        record.SetEndTime(db, now);
+                    }
+
+                }
+                TextView warning = FindViewById<TextView>(Resource.Id.Warning);
+                warning.Visibility = ViewStates.Invisible;
+            }
+            catch (WebException)
+            {
+                Console.WriteLine("Could not connect to WebAPI. Please check Connection");
+                TextView warning = FindViewById<TextView>(Resource.Id.Warning);
+                warning.Visibility = ViewStates.Visible;
+
             }
 
 
@@ -106,6 +120,7 @@ namespace ZAPP
 
 
         }
+       
     }
    
 }

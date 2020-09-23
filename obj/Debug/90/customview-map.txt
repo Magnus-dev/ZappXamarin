@@ -48,5 +48,6 @@ Space;obj\Debug\90\res\layout\login.xml
 string;obj\Debug\90\res\values\strings.xml
 style;obj\Debug\90\res\values\styles.xml
 TextView;obj\Debug\90\res\layout\content_main.xml
+TextView;obj\Debug\90\res\layout\detail.xml
 TextView;obj\Debug\90\res\layout\listrow.xml
 TextView;obj\Debug\90\res\layout\tasklistrow.xml

@@ -24,6 +24,14 @@
             android:layout_height="match_parent"
             android:id="@+id/imageView1" />
     </FrameLayout>
+        <TextView
+        android:text="No Connection to API"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Warning"
+        android:visibility="invisible"
+        android:textColor="#FF0066"/>
     <LinearLayout
         android:orientation="horizontal"
         android:minWidth="25px"
@@ -39,7 +47,8 @@
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/TasksOverview" />   
+        android:id="@+id/TasksOverview" />
+   
     <Button
         android:text="Aanmelden/Afmelden"
         android:layout_width="match_parent"
