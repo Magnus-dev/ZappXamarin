@@ -27,8 +27,6 @@ namespace ZAPP
     public class _database
     {
         private Context context;
- 
-
         public void createDatabase()
         {
             Resources res = this.context.Resources;
@@ -83,9 +81,9 @@ namespace ZAPP
                     }
                     conn.Close();
                 }
-                this.ApiProcessing();
+                
             }
-
+            this.ApiProcessing();
 
 
         }
@@ -137,7 +135,6 @@ namespace ZAPP
 
                     return result;
                 }
-
             }
             else
             {
@@ -193,13 +190,13 @@ namespace ZAPP
                     //Console.WriteLine(result.ToString());
                     return record;
                 }
-
             }
             else
             {
                 return null;
             }
         }
+   
         public _database(Context context)
         {
             this.context = context;
@@ -216,6 +213,7 @@ namespace ZAPP
                 string download = Encoding.ASCII.GetString(myDataBuffer);
                 JsonValue value = JsonValue.Parse(download);
                 JsonValue values = value["entries"];
+                Console.WriteLine(values.ToString());
                 return values;
             }
             catch (WebException)
@@ -225,27 +223,45 @@ namespace ZAPP
                 // geven of e.e.a. gelukt is of niet
             }
         }
+        //Downloads the tables from the central backend via API call and Processes this data to the local SQLite DB
         private void ApiProcessing()
         {
             var conn = getDatabase();
+            ArrayList appointment_db = this.showAllAppointmentData();
+
             JsonValue valuesAppointment = downloadData(Constant.GetAppointmentUrl);
             foreach (JsonObject result in valuesAppointment)
             {
                 //Console.WriteLine(result.ToString());
                 AppointmentRecord record = new AppointmentRecord(result);
-                Console.WriteLine(this.writeToTable(record.createRecordString(), conn));
+                if (EntryIsinLocalDB(appointment_db, record))
+                {
+                    Console.WriteLine(this.writeToTable(record.updateRecordString(), conn));
+                }
+                else
+                {
+                    Console.WriteLine(this.writeToTable(record.createRecordString(), conn));
+                }
             }
             JsonValue valuesTasks = downloadData(Constant.GetTasksUrl);
+            ArrayList tasks_db = this.showAppointmentTasks();
             //Console.WriteLine(valuesTasks.ToString());
             foreach (JsonObject result in valuesTasks)
             {
                 //Console.WriteLine(result.ToString());
                 ToDoesRecord record = new ToDoesRecord(result);
-                Console.WriteLine(this.writeToTable(record.createRecordString(), conn));
+                if(EntryIsinLocalDB(tasks_db, record))
+                {
+                    Console.WriteLine(this.writeToTable(record.updateRecordString(), conn));
+                }
+                else
+                {
+                    Console.WriteLine(this.writeToTable(record.createRecordString(), conn));
+                }
+                
             }
-
         }
-        public ArrayList showAllData()
+        public ArrayList showAllAppointmentData()
         {
             ArrayList list = new ArrayList();
             var conn = this.getDatabase();
@@ -296,6 +312,54 @@ namespace ZAPP
                 }
             }
             return list;
+        }
+        public ArrayList showAppointmentTasks()
+        {
+            ArrayList list = new ArrayList();
+            var conn = this.getDatabase();
+            string command = ToDoesRecord.getRecords();
+            if (conn != null)
+            {
+                using (conn)
+                {
+                    conn.Open();
+                    using (var cmd = conn.CreateCommand())
+                    {
+                        Console.WriteLine(command);
+                        cmd.CommandText = command;
+                        cmd.CommandType = CommandType.Text;
+                        SqliteDataReader datatable = cmd.ExecuteReader();
+                        while (datatable.Read())
+                        {
+                            list.Add(new ToDoesRecord(datatable));
+                        }
+                    }
+                    conn.Close();
+                }
+            }
+            return list;
+        }
+        public bool EntryIsinLocalDB(ArrayList list, AppointmentRecord record)
+        {
+            foreach(AppointmentRecord listrec in list)
+            {
+                if(record._id == listrec._id)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool EntryIsinLocalDB(ArrayList list, ToDoesRecord record)
+        {
+            foreach (ToDoesRecord listrec in list)
+            {
+                if (record._id == listrec._id)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         //    public ArrayList showAllTaskData()
         //    {

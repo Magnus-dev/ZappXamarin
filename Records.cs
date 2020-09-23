@@ -61,6 +61,11 @@ namespace ZAPP
                 "           Values('" + this.name + "', '" + this.address + "', '" + this.postcode + "', '" + this.city + "', '" + this.appointmentTime + "', '" + this.startTime + "', '" + this.endTime + "', '" + this._id + "');";
             return record;
         }
+        public string updateRecordString()
+        {
+            string record = "update appointment SET name = '" + this.name + "', address= '" + this.address + "', postcode='" + this.postcode + "' , city = '" + this.city + "', appointmentTime='" + this.appointmentTime + "' , startTime ='" + this.startTime + "' , endTime= '" + this.endTime + "' WHERE _id = '" + this._id + "';";
+            return record;
+        }
         public static string getRecords()
         {
             string record = "select id, name, address, postcode, city, appointmentTime, startTime, endTime, _id from appointment;";
@@ -118,6 +123,11 @@ namespace ZAPP
                 "           Values('" + this.description + "', '" + this.completed + "', '" + this.appointmentId + "', '" + this._id + "');";
             return record;
         }
+        public string updateRecordString()
+        {
+            string record = "update todoes SET description = '" + this.description + "', appointmentId= '" + this.appointmentId + "', _id='" + this._id + "' WHERE _id = '" + this._id + "';";
+            return record;
+        }
         //public string createManyRecordsString(JsonArray records)
         //{
 
@@ -133,6 +143,11 @@ namespace ZAPP
         public static string getRecords(string _id)
         {
             string record = "select id,description, completed, appointmentId, _id from todoes where appointmentId = '"+ _id +"';";
+            return record;
+        }
+        public static string getRecords()
+        {
+            string record = "select id,description, completed, appointmentId, _id from todoes;";
             return record;
         }
 
