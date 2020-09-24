@@ -23,7 +23,7 @@ namespace ZAPP
         {
             base.OnCreate(bundle);
             _database db = new _database(this);
-            result = (ArrayList)db.showAllAppointmentData();
+            result = (ArrayList)db.ShowAllAppointmentData();
             records = new List<ListRecord>();
             foreach (AppointmentRecord value in result)
             {

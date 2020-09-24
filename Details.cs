@@ -31,7 +31,7 @@ namespace ZAPP
             base.OnCreate(savedInstanceState);
             db = new _database(this);
             var _id = Intent.GetStringExtra("ID");
-            result = (ArrayList)db.showAppointmentTasks(_id);
+            result = (ArrayList)db.ShowAppointmentTasks(_id);
             records = new List<TaskRecord>();
             foreach (ToDoesRecord value in result)
             {

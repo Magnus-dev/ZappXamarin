@@ -14,13 +14,13 @@ namespace ZAPP
 {
     static class Constant
     {
-        public static string EdUrl = "http://192.168.1.21:8080/api/collections";
-        public static string HomeUrl = "http://192.168.178.19:8080/api/collections";
-        public static string ApiToken = "011c00c3da03302a6c353ae054176b";
-        public static string ApiTokenString = "?token="+ApiToken;
-        public static string SaveAppointmentUrl = "/save/ZappAppointment";
-        public static string GetAppointmentUrl = "/get/ZappAppointment";
-        public static string SaveTasksUrl = "/save/ZappTasks";
-        public static string GetTasksUrl = "/get/ZappTasks";
+        public static string EdUrl = "http://192.168.1.21:8080/api";
+        public static string HomeUrl = "http://192.168.178.19:8080/api";
+        public static string AuthUser = "/cockpit/authUser";
+        public static string ApiTokenString = "?token=";
+        public static string SaveAppointmentUrl = "/collections/save/ZappAppointment";
+        public static string GetAppointmentUrl = "/collections/get/ZappAppointment";
+        public static string SaveTasksUrl = "/collections/save/ZappTasks";
+        public static string GetTasksUrl = "/collections/get/ZappTasks";
     }
 }

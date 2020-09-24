@@ -17,7 +17,7 @@ namespace ZAPP
     public class LoginActivity : Activity
     {
         LinearLayout layout;
-        View v;
+        //View v;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -25,20 +25,25 @@ namespace ZAPP
             layout = FindViewById<LinearLayout>(Resource.Id.LoginLayout);
             layout.FindViewById<ImageView>(Resource.Id.LogoImg);
             Button LoginButton = layout.FindViewById<Button>(Resource.Id.LoginButton);
-            layout.FindViewById<Button>(Resource.Id.RegistrationButton);
+            EditText email = FindViewById<EditText>(Resource.Id.Email);
+            EditText password = FindViewById<EditText>(Resource.Id.Password);
+            
             LoginButton.Click += delegate
             {
-                LoginButtonClicked(v);
+                LoginButtonClicked( email.Text, password.Text);
             };
             base.OnCreate(savedInstanceState);
 
             // Create your application here
         }
         
-        protected void LoginButtonClicked(View v)
+        protected void LoginButtonClicked(string email, string password)
         {
-            var intent = new Intent(this, typeof(Home));
 
+            
+            
+           
+            var intent = new Intent(this, typeof(Home));
             StartActivityForResult(intent, 0);
         }
     }

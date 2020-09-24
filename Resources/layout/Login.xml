@@ -22,23 +22,46 @@
         android:layout_marginBottom="23.5dp" />
     
     </FrameLayout>
+    <TextView
+        android:text="Email"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1" />
+    <EditText
+        android:inputType="textEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="75.2dp"
+        android:id="@+id/Email"
+/>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/space1"
+        android:layout_marginBottom="32.0dp" />
+    <TextView
+        android:text="Password"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2" />
+    <EditText
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="76.0dp"
+        android:id="@+id/Password"
+/>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="48.0dp"
+        android:id="@+id/space2" />
+
     <Button
         android:text="LogIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/LoginButton" 
         android:onClick= "LoginButtonClicked"/>
-        
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/space1"
-        android:layout_marginBottom="47.5dp" />
-    <Button
-        android:text="Registration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/RegistrationButton"
-        android:onClick= "RegistrationButtonClicked"/>/>
+
 
 </LinearLayout>

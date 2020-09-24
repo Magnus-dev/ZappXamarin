@@ -15,6 +15,7 @@ CheckBox;obj\Debug\90\res\layout\tasklistrow.xml
 color;obj\Debug\90\res\values\colors.xml
 color;obj\Debug\90\res\values\ic_launcher_background.xml
 dimen;obj\Debug\90\res\values\dimens.xml
+EditText;obj\Debug\90\res\layout\login.xml
 external-cache-path;C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\lp\35\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
 external-path;C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\lp\35\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
 foreground;obj\Debug\90\res\mipmap-anydpi-v26\ic_launcher.xml
@@ -50,4 +51,5 @@ style;obj\Debug\90\res\values\styles.xml
 TextView;obj\Debug\90\res\layout\content_main.xml
 TextView;obj\Debug\90\res\layout\detail.xml
 TextView;obj\Debug\90\res\layout\listrow.xml
+TextView;obj\Debug\90\res\layout\login.xml
 TextView;obj\Debug\90\res\layout\tasklistrow.xml

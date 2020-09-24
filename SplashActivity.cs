@@ -22,8 +22,15 @@ namespace ZAPP
             base.OnCreate(bundle);
             _database db = new _database(this);
             //db.showAllData();
-            Thread.Sleep(500);
-            StartActivity(typeof(LoginActivity));
+            //Thread.Sleep(500);
+            if (db.GetApiKey() == null)
+            {
+                StartActivity(typeof(LoginActivity));
+            }
+            else
+            {
+                StartActivity(typeof(Home));
+            }
         }
         /* protected override void OnCreate(Bundle savedInstanceState)
          {

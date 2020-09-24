@@ -67,6 +67,7 @@
     <Compile Include="Constant.cs" />
     <Compile Include="Details.cs" />
     <Compile Include="Home.cs" />
+    <Compile Include="Services\Webclient.cs" />
     <Compile Include="TaskRecord.cs" />
     <Compile Include="TaskListViewAdapter.cs" />
     <Compile Include="HomeListViewAdapter.cs" />

@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">ZAPP</string>
     <string name="action_settings">Settings</string>
-	<string name="app_version">0.6</string>
+	<string name="app_version">0.7</string>
 	<string name="createUserTableData">
 		create table user( id INTEGER PRIMARY KEY AUTOINCREMENT,
-		username text, password text)
+		apiKey text)
 
 	</string>
 	<string name="createAppointmentTableData">

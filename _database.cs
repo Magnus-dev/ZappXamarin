@@ -196,42 +196,44 @@ namespace ZAPP
                 return null;
             }
         }
-   
         public _database(Context context)
         {
             this.context = context;
             this.createDatabase();
         }
-        private JsonValue downloadData(string table)
-        {
-            var webClient = new WebClient();
-            webClient.Encoding = Encoding.UTF8;
-            try
-            {
-                //Download data from the API from table {table}
-                byte[] myDataBuffer = webClient.DownloadData(Constant.HomeUrl +table+ Constant.ApiTokenString);
-                string download = Encoding.ASCII.GetString(myDataBuffer);
-                JsonValue value = JsonValue.Parse(download);
-                JsonValue values = value["entries"];
-                Console.WriteLine(values.ToString());
-                return values;
-            }
-            catch (WebException)
-            {
-                Console.WriteLine("Could not connect to WebAPI. Please check Connection");
-                return null;
-                
-                //Doe vooralsnog niks, straks wellicht een boolean terug.
-                // geven of e.e.a. gelukt is of niet
-            }
-        }
-        //Downloads the tables from the central backend via API call and Processes this data to the local SQLite DB
+        
+        // Downloads The data from a Webapi
+        //private JsonValue DownloadData(string table)
+        //{
+        //    var webClient = new WebClient();
+        //    webClient.Encoding = Encoding.UTF8;
+        //    string apiKey = GetApiKey();
+        //    try
+        //    {
+        //        //Download data from the API from table {table}
+        //        byte[] myDataBuffer = webClient.DownloadData(Constant.EdUrl + table + Constant.ApiTokenString + apiKey);
+        //        string download = Encoding.ASCII.GetString(myDataBuffer);
+        //        JsonValue value = JsonValue.Parse(download);
+        //        JsonValue values = value["entries"];
+        //        Console.WriteLine(values.ToString());
+        //        return values;
+        //    }
+        //    catch (WebException)
+        //    {
+        //        Console.WriteLine("Could not connect to WebAPI. Please check Connection");
+        //        return null;
+
+        //        //Doe vooralsnog niks, straks wellicht een boolean terug.
+        //        // geven of e.e.a. gelukt is of niet
+        //    }
+        //}
+        // Calls the download method and processes this data to the local SQLite DB
         private void ApiProcessing()
         {
             var conn = getDatabase();
-            ArrayList appointment_db = this.showAllAppointmentData();
+            ArrayList appointment_db = this.ShowAllAppointmentData();
 
-            JsonValue valuesAppointment = downloadData(Constant.GetAppointmentUrl);
+            JsonValue valuesAppointment = Services.Webclient.DownloadData(Constant.GetAppointmentUrl, this);
             if(valuesAppointment != null) { 
             foreach (JsonObject result in valuesAppointment)
             {
@@ -246,8 +248,8 @@ namespace ZAPP
                     Console.WriteLine(this.writeToTable(record.createRecordString(), conn));
                 }
             }
-            JsonValue valuesTasks = downloadData(Constant.GetTasksUrl);
-            ArrayList tasks_db = this.showAppointmentTasks();
+            JsonValue valuesTasks = Services.Webclient.DownloadData(Constant.GetTasksUrl, this);
+                ArrayList tasks_db = this.ShowAppointmentTasks();
                 //Console.WriteLine(valuesTasks.ToString());
                 foreach (JsonObject result in valuesTasks)
                 {
@@ -264,7 +266,7 @@ namespace ZAPP
                 }
             }
         }
-        public ArrayList showAllAppointmentData()
+        public ArrayList ShowAllAppointmentData()
         {
             ArrayList list = new ArrayList();
             var conn = this.getDatabase();
@@ -290,7 +292,7 @@ namespace ZAPP
             }
             return list;
         }
-        public ArrayList showAppointmentTasks(string _id)
+        public ArrayList ShowAppointmentTasks(string _id)
         {
             ArrayList list = new ArrayList();
             var conn = this.getDatabase();
@@ -316,7 +318,7 @@ namespace ZAPP
             }
             return list;
         }
-        public ArrayList showAppointmentTasks()
+        public ArrayList ShowAppointmentTasks()
         {
             ArrayList list = new ArrayList();
             var conn = this.getDatabase();
@@ -401,6 +403,73 @@ namespace ZAPP
 
         //        //return list;
         //    }
+        public string GetApiKey()
+        {
+            string apiKey = "";
+            var conn = this.getDatabase();
+            string command = "select apiKey from user where id = 1;"; ;
+            try
+            {
+                if (conn != null)
+                {
+                    using (conn)
+                    {
+                        conn.Open();
+                        using (var cmd = conn.CreateCommand())
+                        {
+                            Console.WriteLine(command);
+                            cmd.CommandText = command;
+                            cmd.CommandType = CommandType.Text;
+                            SqliteDataReader datatable = cmd.ExecuteReader();
+                            datatable.Read();
+                            if (datatable["apiKey"] is System.DBNull)
+                            {
+                                apiKey = null;
+                            }
+                            else
+                            {
+                                apiKey = datatable["apiKey"].ToString();
+                                Console.WriteLine(datatable["apiKey"].GetType());
+                            }
+                        }
+                        conn.Close();
+                    }
+                }
+            }
+            catch (SqliteException)
+            {
+                Console.WriteLine("Entry Could not be found");
+            }
+            return apiKey;
+        }
+        public int SetApiKey(string apiKey)
+        {
 
+            var conn = getDatabase();
+            int result;
+            string command = "insert into user (apiKey), VALUE('"+apiKey+"');" ;
+            if (conn != null)
+            {
+                using (conn)
+                {
+                    conn.Open();
+                    using (var cmd = conn.CreateCommand())
+                    {
+                        Console.WriteLine(command);
+                        cmd.CommandText = command;
+                        cmd.CommandType = CommandType.Text;
+                        result = cmd.ExecuteNonQuery();
+                    }
+                    conn.Close();
+
+                    return result;
+                }
+            }
+            else
+            {
+                return 0;
+            }
+
+        }
     }
 }
