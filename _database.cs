@@ -201,39 +201,13 @@ namespace ZAPP
             this.context = context;
             this.createDatabase();
         }
-        
-        // Downloads The data from a Webapi
-        //private JsonValue DownloadData(string table)
-        //{
-        //    var webClient = new WebClient();
-        //    webClient.Encoding = Encoding.UTF8;
-        //    string apiKey = GetApiKey();
-        //    try
-        //    {
-        //        //Download data from the API from table {table}
-        //        byte[] myDataBuffer = webClient.DownloadData(Constant.EdUrl + table + Constant.ApiTokenString + apiKey);
-        //        string download = Encoding.ASCII.GetString(myDataBuffer);
-        //        JsonValue value = JsonValue.Parse(download);
-        //        JsonValue values = value["entries"];
-        //        Console.WriteLine(values.ToString());
-        //        return values;
-        //    }
-        //    catch (WebException)
-        //    {
-        //        Console.WriteLine("Could not connect to WebAPI. Please check Connection");
-        //        return null;
-
-        //        //Doe vooralsnog niks, straks wellicht een boolean terug.
-        //        // geven of e.e.a. gelukt is of niet
-        //    }
-        //}
         // Calls the download method and processes this data to the local SQLite DB
         private void ApiProcessing()
         {
             var conn = getDatabase();
             ArrayList appointment_db = this.ShowAllAppointmentData();
 
-            JsonValue valuesAppointment = Services.Webclient.DownloadData(Constant.GetAppointmentUrl, this);
+            JsonValue valuesAppointment = Services.Webclient.DownloadData(Services.Webclient.GetAppointmentUrl, this.GetApiKey());
             if(valuesAppointment != null) { 
             foreach (JsonObject result in valuesAppointment)
             {
@@ -248,7 +222,7 @@ namespace ZAPP
                     Console.WriteLine(this.writeToTable(record.createRecordString(), conn));
                 }
             }
-            JsonValue valuesTasks = Services.Webclient.DownloadData(Constant.GetTasksUrl, this);
+            JsonValue valuesTasks = Services.Webclient.DownloadData(Services.Webclient.GetTasksUrl, this.GetApiKey());
                 ArrayList tasks_db = this.ShowAppointmentTasks();
                 //Console.WriteLine(valuesTasks.ToString());
                 foreach (JsonObject result in valuesTasks)
@@ -447,7 +421,7 @@ namespace ZAPP
 
             var conn = getDatabase();
             int result;
-            string command = "insert into user (apiKey), VALUE('"+apiKey+"');" ;
+            string command = "insert into user (apiKey) Values('"+apiKey+"');" ;
             if (conn != null)
             {
                 using (conn)

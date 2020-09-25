@@ -75,50 +75,24 @@ namespace ZAPP
         protected void RegisterButtonClicked()
         {
             var _id = Intent.GetStringExtra("ID");
-            var webClient = new WebClient();
-            webClient.Encoding = Encoding.UTF8;
-            webClient.Headers.Add("Content-Type", "application/json");
-            try
-            {
-                Uri url = new Uri(Constant.HomeUrl + Constant.SaveAppointmentUrl + Constant.ApiTokenString);
-                AppointmentRecord record = db.getAppointmentFromTable(_id);
-                string now = DateTime.Now.ToString();
-                //Console.WriteLine(record.startTime.Length);
-                if (record.startTime.Length == 0)
-                {
-                    string content = "{  \"data\" :{ \"_id\":\"" + _id + "\", \"StartTime\": \"" + now + "\"}}";
-                    //Console.WriteLine(content);
-                    string message = webClient.UploadString(url, "POST", content);
-                    Console.WriteLine(url);
-                    record.SetStartTime(db, now);
-                }
-                else
-                {
-                    if (record.endTime.Length == 0)
-                    {
-                        string content = "{  \"data\" :{ \"_id\":\"" + _id + "\", \"EndTime\": \"" + now + "\"}}";
-                        //Console.WriteLine(content);
-                        string message = webClient.UploadString(url, "POST", content);
-                        Console.WriteLine(url);
-                        record.SetEndTime(db, now);
-                    }
-
-                }
-                TextView warning = FindViewById<TextView>(Resource.Id.Warning);
-                warning.Visibility = ViewStates.Invisible;
+            AppointmentRecord record = db.getAppointmentFromTable(_id);
+            string now = DateTime.Now.ToString();
+            //Console.WriteLine(record.startTime.Length);
+            if (record.startTime.Length == 0)
+            {                
+                record.SetStartTime(db, now);
             }
-            catch (WebException)
+            else
             {
-                Console.WriteLine("Could not connect to WebAPI. Please check Connection");
-                TextView warning = FindViewById<TextView>(Resource.Id.Warning);
-                warning.Visibility = ViewStates.Visible;
+                if (record.endTime.Length == 0)
+                {
+                    record.SetEndTime(db, now);
+                }
 
             }
-
-
-
-
-
+            TextView warning = FindViewById<TextView>(Resource.Id.Warning);
+            warning.Visibility = ViewStates.Invisible;
+            
         }
        
     }

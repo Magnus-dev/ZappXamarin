@@ -39,12 +39,25 @@ namespace ZAPP
         
         protected void LoginButtonClicked(string email, string password)
         {
-
-            
-            
-           
-            var intent = new Intent(this, typeof(Home));
+            string answer = Services.Webclient.LoginRequest(email, password);
+            if(answer == "unauthorized")
+            {
+                //var intent = new Intent(this, typeof(LoginActivity));
+                //StartActivityForResult(intent, 0);
+            }
+            if(answer == "not_found")
+            {
+                Toast toast = new Toast(this);
+                
+            }
+            if(answer != "unauthorized" ||answer != "not_found")
+            {
+                _database db = new _database(this);
+                db.SetApiKey(answer);
+            }
+            var intent = new Intent(this, typeof(SplashActivity));
             StartActivityForResult(intent, 0);
+
         }
     }
 }

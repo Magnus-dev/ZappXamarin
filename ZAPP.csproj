@@ -64,7 +64,6 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constant.cs" />
     <Compile Include="Details.cs" />
     <Compile Include="Home.cs" />
     <Compile Include="Services\Webclient.cs" />
