@@ -33,6 +33,7 @@ namespace ZAPP.Services
 
             try
             {
+                Console.WriteLine(apiKey);
                 //Download data from the API from table {table}
                 byte[] myDataBuffer = webClient.DownloadData(HomeUrl + table + ApiTokenString + apiKey);
                 string download = Encoding.ASCII.GetString(myDataBuffer);

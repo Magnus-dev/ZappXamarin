@@ -83,7 +83,7 @@ namespace ZAPP
                 }
                 
             }
-            this.ApiProcessing();
+            
 
 
         }
@@ -202,34 +202,19 @@ namespace ZAPP
             this.createDatabase();
         }
         // Calls the download method and processes this data to the local SQLite DB
-        private void ApiProcessing()
+        public void ApiProcessing()
         {
             var conn = getDatabase();
             ArrayList appointment_db = this.ShowAllAppointmentData();
 
             JsonValue valuesAppointment = Services.Webclient.DownloadData(Services.Webclient.GetAppointmentUrl, this.GetApiKey());
+            
             if(valuesAppointment != null) { 
-            foreach (JsonObject result in valuesAppointment)
-            {
-                //Console.WriteLine(result.ToString());
-                AppointmentRecord record = new AppointmentRecord(result);
-                if (EntryIsinLocalDB(appointment_db, record))
+                foreach (JsonObject result in valuesAppointment)
                 {
-                    Console.WriteLine(this.writeToTable(record.updateRecordString(), conn));
-                }
-                else
-                {
-                    Console.WriteLine(this.writeToTable(record.createRecordString(), conn));
-                }
-            }
-            JsonValue valuesTasks = Services.Webclient.DownloadData(Services.Webclient.GetTasksUrl, this.GetApiKey());
-                ArrayList tasks_db = this.ShowAppointmentTasks();
-                //Console.WriteLine(valuesTasks.ToString());
-                foreach (JsonObject result in valuesTasks)
-                {
-                    //Console.WriteLine(result.ToString());
-                    ToDoesRecord record = new ToDoesRecord(result);
-                    if (EntryIsinLocalDB(tasks_db, record))
+                    Console.WriteLine(result.ToString());
+                    AppointmentRecord record = new AppointmentRecord(result);
+                    if (EntryIsinLocalDB(appointment_db, record))
                     {
                         Console.WriteLine(this.writeToTable(record.updateRecordString(), conn));
                     }
@@ -238,6 +223,22 @@ namespace ZAPP
                         Console.WriteLine(this.writeToTable(record.createRecordString(), conn));
                     }
                 }
+            JsonValue valuesTasks = Services.Webclient.DownloadData(Services.Webclient.GetTasksUrl, this.GetApiKey());
+            ArrayList tasks_db = this.ShowAppointmentTasks();
+            //Console.WriteLine(valuesTasks.ToString());
+            foreach (JsonObject result in valuesTasks)
+            {
+                //Console.WriteLine(result.ToString());
+                ToDoesRecord record = new ToDoesRecord(result);
+                if (EntryIsinLocalDB(tasks_db, record))
+                {
+                    Console.WriteLine(this.writeToTable(record.updateRecordString(), conn));
+                }
+                else
+                {
+                    Console.WriteLine(this.writeToTable(record.createRecordString(), conn));
+                }
+            }
             }
         }
         public ArrayList ShowAllAppointmentData()

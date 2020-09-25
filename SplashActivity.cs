@@ -21,6 +21,7 @@ namespace ZAPP
         {
             base.OnCreate(bundle);
             _database db = new _database(this);
+            db.ApiProcessing();
             //db.showAllData();
             //Thread.Sleep(500);
             if (db.GetApiKey() == null)
