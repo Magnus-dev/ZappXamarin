@@ -64,7 +64,10 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Details.cs" />
+    <Compile Include="Activities\AppointmentActivity.cs" />
+    <Compile Include="Adapters\AppointmentsViewPagerAdapter.cs" />
+    <Compile Include="Fragments\AppointmentAddressFragment.cs" />
+    <Compile Include="Fragments\AppointmentTasksFragment.cs" />
     <Compile Include="Home.cs" />
     <Compile Include="Services\Webclient.cs" />
     <Compile Include="TaskRecord.cs" />
@@ -127,9 +130,6 @@
     <AndroidResource Include="Resources\drawable\splash_background.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Detail.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\layout\Home.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +151,16 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\check.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Appointment.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\AppointmentTasks.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\AppointmentAdress.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

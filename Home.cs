@@ -38,7 +38,7 @@ namespace ZAPP
         protected void OnListItemClick(object sender, Android.Widget.AdapterView.ItemClickEventArgs e)
         {
             var t = records[e.Position];
-            var intent = new Intent(this, typeof(Detail));
+            var intent = new Intent(this, typeof(Activities.AppointmentActivity));
             intent.PutExtra("ID", t._id);
 
             StartActivityForResult(intent, 0);

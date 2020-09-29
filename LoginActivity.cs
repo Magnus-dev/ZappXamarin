@@ -40,17 +40,17 @@ namespace ZAPP
         protected void LoginButtonClicked(string email, string password)
         {
             string answer = Services.Webclient.LoginRequest(email, password);
-            if(answer == "unauthorized")
+            if(answer == null)
             {
                 //var intent = new Intent(this, typeof(LoginActivity));
                 //StartActivityForResult(intent, 0);
             }
-            if(answer == "not_found")
-            {
-                Toast toast = new Toast(this);
+            //if(answer == "not_found")
+            //{
+            //    Toast toast = new Toast(this);
                 
-            }
-            if(answer != "unauthorized" ||answer != "not_found")
+            //}
+            if(answer != null)
             {
                 _database db = new _database(this);
                 db.SetApiKey(answer);

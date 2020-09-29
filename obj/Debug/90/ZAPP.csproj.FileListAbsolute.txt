@@ -321,7 +321,6 @@ C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\res\mipm
 C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\res\mipmap-xxxhdpi\ic_launcher_round.png
 C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\res\drawable\splash.png
 C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\res\drawable\splash_background.xml
-C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\res\layout\detail.xml
 C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\res\layout\home.xml
 C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\res\layout\listrow.xml
 C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\res\layout\login.xml
@@ -545,3 +544,13 @@ C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\stamp\_G
 C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\stamp\_ResolveLibraryProjectImports.stamp
 C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\res\drawable\check.png
+C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\android\src\crc646c02556064c59ab6\DetailsTasksListFragment.java
+C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\android\src\crc646c02556064c59ab6\DetailsViewPagerAdapter.java
+C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\res\layout\appointment.xml
+C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\android\src\crc6419375ce5ede2d134\AppointmentActivity.java
+C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\android\src\crc642007020c1aa00a24\AppointmentsViewPagerAdapter.java
+C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\android\src\crc642007020c1aa00a24\AppointmentsViewPagerAdapterViewHolder.java
+C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\res\layout\appointmenttasks.xml
+C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\res\layout\appointmentadress.xml
+C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\android\src\crc64064740b974efe41d\AppointmentAddressFragment.java
+C:\Users\MagnusLaptop\Source\Repos\Magnus-dev\ZappXamarrin\obj\Debug\90\android\src\crc64064740b974efe41d\AppointmentTasksFragment.java

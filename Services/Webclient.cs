@@ -17,8 +17,10 @@ namespace ZAPP.Services
 {
     static class Webclient
     {
-        public static string EdUrl = "http://192.168.1.21:8080/api";
-        public static string HomeUrl = "http://192.168.178.19:8080/api";
+        //EDUCOM URL
+        //public static string Url = "http://192.168.1.21:8080/api";
+        // HOME URL
+        public static string Url = "http://192.168.178.19:8080/api";
         public static string AuthUser = "/cockpit/authUser";
         public static string ApiTokenString = "?token=";
         public static string loginApiKey = "4cc34a901a055d1580f5ef92e99ce6";
@@ -30,12 +32,11 @@ namespace ZAPP.Services
         {
             var webClient = new WebClient();
             webClient.Encoding = Encoding.UTF8;
-
             try
             {
                 Console.WriteLine(apiKey);
                 //Download data from the API from table {table}
-                byte[] myDataBuffer = webClient.DownloadData(HomeUrl + table + ApiTokenString + apiKey);
+                byte[] myDataBuffer = webClient.DownloadData(Url + table + ApiTokenString + apiKey);
                 string download = Encoding.ASCII.GetString(myDataBuffer);
                 JsonValue value = JsonValue.Parse(download);
                 JsonValue values = value["entries"];
@@ -51,7 +52,7 @@ namespace ZAPP.Services
                 // geven of e.e.a. gelukt is of niet
             }
         }
-        public static void UploadStartTime(string _id, string now)
+        public static void UploadStartTime(string _id, string now, string apiKey)
         {
 
             var webClient = new WebClient();
@@ -59,24 +60,17 @@ namespace ZAPP.Services
             webClient.Headers.Add("Content-Type", "application/json");
             try
             {
-                Uri url = new Uri(HomeUrl + SaveAppointmentUrl + ApiTokenString);
+                Uri url = new Uri(Url + SaveAppointmentUrl + ApiTokenString + apiKey);
                     string content = "{  \"data\" :{ \"_id\":\"" + _id + "\", \"StartTime\": \"" + now + "\"}}";
-                    //Console.WriteLine(content);
-                    string message = webClient.UploadString(url, "POST", content);
-                    Console.WriteLine(url);
-                //TextView warning = FindViewById<TextView>(Resource.Id.Warning);
-                //warning.Visibility = ViewStates.Invisible;
+                    webClient.UploadStringAsync(url, "POST", content);
             }
             catch (WebException)
             {
-                //Console.WriteLine("Could not connect to WebAPI. Please check Connection");
-                //TextView warning = FindViewById<TextView>(Resource.Id.Warning);
-                //warning.Visibility = ViewStates.Visible;
 
             }
 
         }
-        public static void UploadEndTime(string _id, string now)
+        public static void UploadEndTime(string _id, string now, string apiKey)
         {
 
             var webClient = new WebClient();
@@ -84,20 +78,14 @@ namespace ZAPP.Services
             webClient.Headers.Add("Content-Type", "application/json");
             try
             {
-                Uri url = new Uri(HomeUrl + SaveAppointmentUrl + ApiTokenString);
+                Uri url = new Uri(Url + SaveAppointmentUrl + ApiTokenString+apiKey);
                 string content = "{  \"data\" :{ \"_id\":\"" + _id + "\", \"EndTime\": \"" + now + "\"}}";
                 //Console.WriteLine(content);
-                string message = webClient.UploadString(url, "POST", content);
-                Console.WriteLine(url);
-                //TextView warning = FindViewById<TextView>(Resource.Id.Warning);
-                //warning.Visibility = ViewStates.Invisible;
+                webClient.UploadStringAsync(url, "POST", content);
             }
             catch (WebException)
             {
                 Console.WriteLine("Could not connect to WebAPI. Please check Connection");
-                //TextView warning = FindViewById<TextView>(Resource.Id.Warning);
-                //warning.Visibility = ViewStates.Visible;
-
             }
 
         }
@@ -105,13 +93,11 @@ namespace ZAPP.Services
         {
             var webClient = new WebClient();
             webClient.Encoding = Encoding.UTF8;
-            
             webClient.Headers.Add("Content-Type", "application/json");
             try
             {
-                Uri url = new Uri(HomeUrl + AuthUser + ApiTokenString + loginApiKey);
+                Uri url = new Uri(Url + AuthUser + ApiTokenString + loginApiKey);
                 string content = "{ \"user\":\"" + email + "\", \"password\": \"" + password + "\"}";
-                ////Console.WriteLine(content);
                 string message = webClient.UploadString(url, "POST", content);
                 Console.WriteLine(message);
 
@@ -125,22 +111,19 @@ namespace ZAPP.Services
             }
             catch (WebException ex)
             {
-                //Console.WriteLine("Could not connect to WebAPI. Please check Connection");
-                //TextView warning = FindViewById<TextView>(Resource.Id.Warning);
-                //warning.Visibility = ViewStates.Visible;
                 HttpWebResponse response = (HttpWebResponse)ex.Response;
 
                 if (response.StatusCode == HttpStatusCode.Unauthorized)
                 {
                     Console.WriteLine("Wrong Email or Password");
-                    return "unauthorized";
+                    return null;
                 }   
                 else
                 {
                     Console.WriteLine("Could not connect to WebAPI. Please check Connection");
-                    return "not_found";
+                    return null;
                 }
-                Console.WriteLine("Could not connect to WebAPI. Please check Connection");
+                //Console.WriteLine("Could not connect to WebAPI. Please check Connection");
 
             }
         }

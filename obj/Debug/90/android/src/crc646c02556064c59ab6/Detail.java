@@ -2,7 +2,7 @@ package crc646c02556064c59ab6;
 
 
 public class Detail
-	extends android.app.Activity
+	extends android.support.v4.app.FragmentActivity
 	implements
 		mono.android.IGCUserPeer
 {
