@@ -9,7 +9,7 @@
 	</string>
 	<string name="createAppointmentTableData">
 		create table appointment( id INTEGER PRIMARY KEY AUTOINCREMENT, name text,
-		address text, postcode text, city text, appointmentTime text, startTime text, endTime text, _id text )
+		address text, postcode text, city text, appointmentTime text, startTime text, endTime text, _id text, phoneNumber text, notice text )
 	</string>
 	<string name="createToDoesTableData">
 		create table todoes( id INTEGER PRIMARY KEY AUTOINCREMENT,

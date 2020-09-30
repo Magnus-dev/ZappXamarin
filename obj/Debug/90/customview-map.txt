@@ -44,6 +44,7 @@ include;obj\Debug\90\res\layout\activity_main.xml
 item;obj\Debug\90\res\menu\menu_main.xml
 item;obj\Debug\90\res\values\styles.xml
 LinearLayout;obj\Debug\90\res\layout\appointment.xml
+LinearLayout;obj\Debug\90\res\layout\appointmentadress.xml
 LinearLayout;obj\Debug\90\res\layout\detail.xml
 LinearLayout;obj\Debug\90\res\layout\detailsaddress.xml
 LinearLayout;obj\Debug\90\res\layout\detailstaskslist.xml
@@ -51,6 +52,7 @@ LinearLayout;obj\Debug\90\res\layout\home.xml
 LinearLayout;obj\Debug\90\res\layout\listrow.xml
 LinearLayout;obj\Debug\90\res\layout\login.xml
 LinearLayout;obj\Debug\90\res\layout\tasklistrow.xml
+ListView;obj\Debug\90\res\layout\appointmenttasks.xml
 ListView;obj\Debug\90\res\layout\detail.xml
 ListView;obj\Debug\90\res\layout\detailstaskslist.xml
 ListView;obj\Debug\90\res\layout\home.xml
@@ -66,6 +68,7 @@ resources;obj\Debug\90\res\values\dimens.xml
 resources;obj\Debug\90\res\values\ic_launcher_background.xml
 resources;obj\Debug\90\res\values\strings.xml
 resources;obj\Debug\90\res\values\styles.xml
+Space;obj\Debug\90\res\layout\appointmentadress.xml
 Space;obj\Debug\90\res\layout\login.xml
 string;obj\Debug\90\res\values\strings.xml
 style;obj\Debug\90\res\values\styles.xml

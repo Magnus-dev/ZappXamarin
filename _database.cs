@@ -172,7 +172,7 @@ namespace ZAPP
         {
             SqliteDataReader result;
             var conn = getDatabase();
-            string command = "select id, name, address, postcode, city, appointmentTime, startTime, endTime, _id from appointment where _id = '" + _id + "';";
+            string command = AppointmentRecord.getRecord(_id);
             if (conn != null)
             {
                 using (conn)

@@ -37,13 +37,14 @@
             android:minHeight="50px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:textColor= "#000"
+            android:isScrollContainer="false"
+            android:foregroundGravity="left"
             android:id="@+id/TabStrip" />
-       <!-- <fragment
-            android:name=""
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/Tabs" />
--->
+
     </android.support.v4.view.ViewPager>
     <Button
         android:text="Aanmelden/Afmelden"

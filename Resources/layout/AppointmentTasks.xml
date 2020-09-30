@@ -6,9 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/relativeLayout1" >
-    <TextView
-        android:text="Tasks Fragment"
-        android:layout_width="wrap_content"
+    <ListView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/Address_Fragment" />
+        android:id="@+id/TasksOverview" />
+    
 </RelativeLayout>

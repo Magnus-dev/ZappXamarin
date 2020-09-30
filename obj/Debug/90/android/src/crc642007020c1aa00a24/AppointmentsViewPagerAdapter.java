@@ -13,6 +13,7 @@ public class AppointmentsViewPagerAdapter
 			"n_getItem:(I)Landroid/support/v4/app/Fragment;:GetGetItem_IHandler\n" +
 			"n_getItemId:(I)J:GetGetItemId_IHandler\n" +
 			"n_getCount:()I:GetGetCountHandler\n" +
+			"n_getPageTitle:(I)Ljava/lang/CharSequence;:GetGetPageTitle_IHandler\n" +
 			"";
 		mono.android.Runtime.register ("ZAPP.Adapters.AppointmentsViewPagerAdapter, ZAPP", AppointmentsViewPagerAdapter.class, __md_methods);
 	}
@@ -48,6 +49,14 @@ public class AppointmentsViewPagerAdapter
 	}
 
 	private native int n_getCount ();
+
+
+	public java.lang.CharSequence getPageTitle (int p0)
+	{
+		return n_getPageTitle (p0);
+	}
+
+	private native java.lang.CharSequence n_getPageTitle (int p0);
 
 	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)

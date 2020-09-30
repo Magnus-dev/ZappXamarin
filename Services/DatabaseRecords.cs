@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Json;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 using Android.App;
@@ -15,7 +16,7 @@ using Mono.Data.Sqlite;
 
 namespace ZAPP
 {
-    class Records
+    class DatabaseRecords
     {
     }
     public class AppointmentRecord
@@ -29,6 +30,8 @@ namespace ZAPP
         public string startTime;
         public string endTime;
         public string _id;
+        public string phoneNumber;
+        public string notice;
 
 
 
@@ -42,6 +45,8 @@ namespace ZAPP
             this._id = (string)record["_id"];
             this.startTime = null;
             this.endTime = null;
+            this.phoneNumber = (string)record["PhoneNumber"];
+            this.notice = (string)record["Notice"];
         }
         public AppointmentRecord(SqliteDataReader record)
         {
@@ -54,21 +59,28 @@ namespace ZAPP
             this._id = (string)record["_id"];
             this.startTime = (string)record["startTime"];
             this.endTime = (string)record["endTime"];
+            this.phoneNumber = (string)record["phoneNumber"];
+            this.notice = (string)record["notice"];
         }
         public string createRecordString()
         {
-            string record = "insert into appointment (name, address, postcode, city, appointmentTime, startTime, endTime, _id) " +
-                "           Values('" + this.name + "', '" + this.address + "', '" + this.postcode + "', '" + this.city + "', '" + this.appointmentTime + "', '" + this.startTime + "', '" + this.endTime + "', '" + this._id + "');";
+            string record = "insert into appointment (name, address, postcode, city, appointmentTime, startTime, endTime, _id, phoneNumber, notice) " +
+                "           Values('" + this.name + "', '" + this.address + "', '" + this.postcode + "', '" + this.city + "', '" + this.appointmentTime + "', '" + this.startTime + "', '" + this.endTime + "', '" + this._id + "' , '"+this.phoneNumber+ "' , '" + this.notice+ "');";
             return record;
         }
         public string updateRecordString()
         {
-            string record = "update appointment SET name = '" + this.name + "', address= '" + this.address + "', postcode='" + this.postcode + "' , city = '" + this.city + "', appointmentTime='" + this.appointmentTime + "' , startTime ='" + this.startTime + "' , endTime= '" + this.endTime + "' WHERE _id = '" + this._id + "';";
+            string record = "update appointment SET name = '" + this.name + "', address= '" + this.address + "', postcode='" + this.postcode + "' , city = '" + this.city + "', appointmentTime='" + this.appointmentTime + "' , startTime ='" + this.startTime + "' , endTime= '" + this.endTime + "', phoneNumber= '"+ this.phoneNumber+ "', notice= '" + this.notice + "' WHERE _id = '" + this._id + "';";
             return record;
         }
         public static string getRecords()
         {
-            string record = "select id, name, address, postcode, city, appointmentTime, startTime, endTime, _id from appointment;";
+            string record = "select id, name, address, postcode, city, appointmentTime, startTime, endTime, _id, phoneNumber, notice from appointment;";
+            return record;
+        }
+        public static string getRecord( string _id)
+        {
+            string record = "select id, name, address, postcode, city, appointmentTime, startTime, endTime, _id, phoneNumber, notice from appointment where _id = '"+_id+"';";
             return record;
         }
         public void SetStartTime(_database db, string now)

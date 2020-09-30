@@ -10,25 +10,39 @@ using Android.Runtime;
 using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
+using ZAPP.Fragments;
 using Fragment = Android.Support.V4.App.Fragment;
 
 namespace ZAPP.Adapters
 {
     class AppointmentsViewPagerAdapter : FragmentPagerAdapter
     {
-        List<Fragment> fragments { get; set; }
-        List<string> fragmentNames { get; set; }
-        Context context;
-        public AppointmentsViewPagerAdapter(Android.Support.V4.App.FragmentManager fragmentManager): base(fragmentManager)
+        List<Fragment> Fragments { get; set; }
+        List<string> FragmentNames { get; set; }
+        //int Id { get; set; }
+        
+        //Fragments
+        AppointmentTasksFragment TasksFragment = new AppointmentTasksFragment();
+        AppointmentAddressFragment AddressFragment = new AppointmentAddressFragment();
+
+        public AppointmentsViewPagerAdapter(Android.Support.V4.App.FragmentManager fragmentManager, string _id): base(fragmentManager)
         {
-            fragments = new List<Fragment>();
-            fragmentNames = new List<string>(); 
+            Bundle args = new Bundle();
+            Fragments = new List<Fragment>();
+            FragmentNames = new List<string>();
+            args.PutString("ID", _id.ToString());
+            TasksFragment.Arguments = args;
+            AddressFragment.Arguments = args;
+            Fragments.Add(TasksFragment);
+            Fragments.Add(AddressFragment);
+            FragmentNames.Add("Tasks");
+            FragmentNames.Add("Address");
         }
 
 
         public override Android.Support.V4.App.Fragment GetItem(int position)
         {
-            return fragments[position];
+            return Fragments[position];
         }
 
         public override long GetItemId(int position)
@@ -39,13 +53,17 @@ namespace ZAPP.Adapters
         {
             get
             {
-                return fragments.Count;
+                return Fragments.Count;
             }
         }
         public void AddFragment(Fragment fragment, string name)
         {
-            fragments.Add(fragment);
-            fragmentNames.Add(name);
+            Fragments.Add(fragment);
+            FragmentNames.Add(name);
+        }
+        public override Java.Lang.ICharSequence GetPageTitleFormatted(int position)
+        {
+            return new Java.Lang.String(FragmentNames[position]);
         }
         //public override View GetView(int position, View convertView, ViewGroup parent)
         //{

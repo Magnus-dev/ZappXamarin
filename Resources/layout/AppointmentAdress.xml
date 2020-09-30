@@ -1,14 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:minWidth="25px"
     android:minHeight="25px"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/relativeLayout1" >
+    android:id="@+id/linearLayout1" >
     <TextView
-        android:text="Address Fragmnet"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/Address_Fragment" />
-</RelativeLayout>
+        android:text="Text"
+        android:textColor="#000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dip"
+        android:id="@+id/Address" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="22.4dp"
+        android:id="@+id/space1"
+        android:layout_marginBottom="41.2dp" />
+    <TextView
+        android:text="Text"
+        android:textColor="#000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dip"
+        android:id="@+id/City" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="22.4dp"
+        android:id="@+id/space2"
+        android:layout_marginBottom="44.4dp" />
+    <TextView
+        android:text="Text"
+        android:textColor="#000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dip"
+        android:id="@+id/Phonenumber" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="22.4dp"
+        android:id="@+id/space3"
+        android:layout_marginBottom="21.2dp" />
+    <TextView
+        android:text=""
+        android:textColor="#000"
+        android:textSize="25dip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/NoticeTitle" />
+    <TextView
+        android:text="Text"
+        android:textColor="#000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dip"
+        android:id="@+id/Notice" />
+</LinearLayout>

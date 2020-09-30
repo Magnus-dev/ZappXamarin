@@ -12,6 +12,7 @@ using Android.Support.V4.View;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+using System.Collections;
 using ZAPP.Adapters;
 using ZAPP.Fragments;
 
@@ -24,38 +25,65 @@ namespace ZAPP.Activities
         ViewPager viewPager;
         PagerTabStrip pagertabstrip;
 
-        //Fragments
-        AppointmentTasksFragment TasksFragment = new AppointmentTasksFragment();
-        AppointmentAddressFragment AddressFragment = new AppointmentAddressFragment();
+        //TaskAppointments
+        _database db;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Appointment);
             ConnectViews();
-            
-            //Button RegisterButton = FindViewById<Button>(Resource.Id.registerTime);
 
-            //RegisterButton.Click += delegate
-            //{
-            //    RegisterButtonClicked();
-            //};
+            Button RegisterButton = FindViewById<Button>(Resource.Id.registerTime);
+
+            RegisterButton.Click += delegate
+            {
+                RegisterButtonClicked();
+            };
+
+            
         }
         void ConnectViews()
         {
             pagertabstrip = (PagerTabStrip)FindViewById(Resource.Id.TabStrip);
             viewPager = (ViewPager)FindViewById(Resource.Id.viewPager);
-            viewPager.OffscreenPageLimit = 1;
-            viewPager.BeginFakeDrag();
+            viewPager.OffscreenPageLimit = 0;
+            //viewPager.BeginFakeDrag();
 
             SetupViewPager();
         }
 
         private void SetupViewPager()
         {
-            AppointmentsViewPagerAdapter adapter = new AppointmentsViewPagerAdapter(SupportFragmentManager);
-            adapter.AddFragment(TasksFragment, "Tasks");
-            adapter.AddFragment(AddressFragment, "Address");
+            Console.WriteLine(Intent.GetStringExtra("ID"));
+            AppointmentsViewPagerAdapter adapter = new AppointmentsViewPagerAdapter(SupportFragmentManager, Intent.GetStringExtra("ID"));
+            //adapter.AddFragment(TasksFragment, "Tasks");
+            //adapter.AddFragment(AddressFragment, "Address");
+            
             viewPager.Adapter = adapter;
+        }
+        protected void RegisterButtonClicked()
+        {
+            var _id = Intent.GetStringExtra("ID");
+            AppointmentRecord record = db.getAppointmentFromTable(_id);
+            string now = DateTime.Now.ToString();
+            //Console.WriteLine(record.startTime.Length);
+            if (record.startTime.Length == 0)
+            {
+                record.SetStartTime(db, now);
+                Services.Webclient.UploadStartTime(_id, now, db.GetApiKey());
+            }
+            else
+            {
+                if (record.endTime.Length == 0)
+                {
+                    record.SetEndTime(db, now);
+                    Services.Webclient.UploadEndTime(_id, now, db.GetApiKey());
+                }
+
+            }
+            //TextView warning = FindViewById<TextView>(Resource.Id.Warning);
+            //warning.Visibility = ViewStates.Invisible;
+
         }
     }
 }
