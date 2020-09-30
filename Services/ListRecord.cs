@@ -20,6 +20,8 @@ namespace ZAPP
         public string postcode;
         public string city;
         public string appointmentTime;
+        public string startTime;
+        public string endTime;
         public string _id;
         public ListRecord(AppointmentRecord record)
         {
@@ -29,6 +31,8 @@ namespace ZAPP
             this.postcode = record.postcode;
             this.city = record.city;
             this.appointmentTime = record.appointmentTime;
+            this.startTime = record.startTime;
+            this.endTime = record.endTime;
             this._id = record._id;
         }
         

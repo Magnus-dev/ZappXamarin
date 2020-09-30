@@ -45,6 +45,10 @@ namespace ZAPP
             {
                 view = context.LayoutInflater.Inflate(Resource.Layout.ListRow, null);
             }
+            if(item.startTime != null && item.endTime == null)
+            {
+                view.FindViewById<LinearLayout>(Resource.Id.ListRow).SetBackgroundColor(Android.Graphics.Color.Red);
+            }
             Console.WriteLine(item.appointmentTime);
             view.FindViewById<TextView>(Resource.Id.Name).Text = item.name;
             view.FindViewById<TextView>(Resource.Id.Date).Text = item.appointmentTime;

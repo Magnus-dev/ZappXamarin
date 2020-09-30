@@ -43,8 +43,8 @@ namespace ZAPP
             this.city = (string)record["City"];
             this.appointmentTime = (string)record["AppointmentTime"];
             this._id = (string)record["_id"];
-            this.startTime = null;
-            this.endTime = null;
+            this.startTime = (string)record["StartTime"];
+            this.endTime = (string)record["EndTime"];
             this.phoneNumber = (string)record["PhoneNumber"];
             this.notice = (string)record["Notice"];
         }

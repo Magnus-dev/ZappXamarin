@@ -63,7 +63,9 @@ namespace ZAPP.Activities
         }
         protected void RegisterButtonClicked()
         {
-            var _id = Intent.GetStringExtra("ID");
+            db = new _database(this);
+            string _id = Intent.GetStringExtra("ID");
+            Console.WriteLine(_id);
             AppointmentRecord record = db.getAppointmentFromTable(_id);
             string now = DateTime.Now.ToString();
             //Console.WriteLine(record.startTime.Length);

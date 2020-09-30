@@ -28,7 +28,11 @@ namespace ZAPP
             foreach (AppointmentRecord value in result)
             {
                 ListRecord row = new ListRecord(value);
-                records.Add(row);
+                if (row.endTime == "")
+                {
+                    records.Add(row);
+                }
+                
             }
             SetContentView(Resource.Layout.Home);
             listView = FindViewById<ListView>(Resource.Id.Overview);
