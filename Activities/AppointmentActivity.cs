@@ -68,7 +68,7 @@ namespace ZAPP.Activities
             Console.WriteLine(_id);
             AppointmentRecord record = db.getAppointmentFromTable(_id);
             string now = DateTime.Now.ToString();
-            //Console.WriteLine(record.startTime.Length);
+            Console.WriteLine(record.startTime.Length);
             if (record.startTime.Length == 0)
             {
                 record.SetStartTime(db, now);
@@ -80,6 +80,8 @@ namespace ZAPP.Activities
                 {
                     record.SetEndTime(db, now);
                     Services.Webclient.UploadEndTime(_id, now, db.GetApiKey());
+                    var intent = new Intent(this, typeof(Home));
+                    StartActivityForResult(intent, 0);
                 }
 
             }
