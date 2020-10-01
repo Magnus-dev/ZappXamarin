@@ -73,6 +73,7 @@ namespace ZAPP.Activities
             {
                 record.SetStartTime(db, now);
                 Services.Webclient.UploadStartTime(_id, now, db.GetApiKey());
+                Toast.MakeText(this, "Starttime was Set", ToastLength.Long);
             }
             else
             {
@@ -80,6 +81,7 @@ namespace ZAPP.Activities
                 {
                     record.SetEndTime(db, now);
                     Services.Webclient.UploadEndTime(_id, now, db.GetApiKey());
+                    Toast.MakeText(this, "Endtime was Set", ToastLength.Long);
                     var intent = new Intent(this, typeof(Home));
                     StartActivityForResult(intent, 0);
                 }

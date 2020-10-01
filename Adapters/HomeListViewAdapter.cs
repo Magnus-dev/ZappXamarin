@@ -52,7 +52,7 @@ namespace ZAPP
             
             Console.WriteLine(item.appointmentTime);
             view.FindViewById<TextView>(Resource.Id.Name).Text = item.name;
-            view.FindViewById<TextView>(Resource.Id.Date).Text = item.appointmentTime;
+            view.FindViewById<TextView>(Resource.Id.Date).Text = item.appointmentTime.ToString();
             view.FindViewById<TextView>(Resource.Id.Address).Text = item.address + ", "+ item.postcode + " "+ item.city;
             return view;
         }

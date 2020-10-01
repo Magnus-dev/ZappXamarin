@@ -19,7 +19,7 @@ namespace ZAPP
         public string address;
         public string postcode;
         public string city;
-        public string appointmentTime;
+        public DateTime appointmentTime;
         public string startTime;
         public string endTime;
         public string _id;
@@ -30,7 +30,7 @@ namespace ZAPP
             this.address = record.address;
             this.postcode = record.postcode;
             this.city = record.city;
-            this.appointmentTime = record.appointmentTime;
+            this.appointmentTime = DateTime.Parse(record.appointmentTime);
             this.startTime = record.startTime;
             this.endTime = record.endTime;
             this._id = record._id;

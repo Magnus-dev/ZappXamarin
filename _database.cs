@@ -208,8 +208,9 @@ namespace ZAPP
             ArrayList appointment_db = this.ShowAllAppointmentData();
 
             JsonValue valuesAppointment = Services.Webclient.DownloadData(Services.Webclient.GetAppointmentUrl, this.GetApiKey());
-            
-            if(valuesAppointment != null) { 
+
+            if (valuesAppointment != null)
+            {
                 foreach (JsonObject result in valuesAppointment)
                 {
                     Console.WriteLine(result.ToString());
@@ -223,22 +224,25 @@ namespace ZAPP
                         Console.WriteLine(this.writeToTable(record.createRecordString(), conn));
                     }
                 }
-            JsonValue valuesTasks = Services.Webclient.DownloadData(Services.Webclient.GetTasksUrl, this.GetApiKey());
-            ArrayList tasks_db = this.ShowAppointmentTasks();
-            //Console.WriteLine(valuesTasks.ToString());
-            foreach (JsonObject result in valuesTasks)
-            {
-                //Console.WriteLine(result.ToString());
-                ToDoesRecord record = new ToDoesRecord(result);
-                if (EntryIsinLocalDB(tasks_db, record))
+                JsonValue valuesTasks = Services.Webclient.DownloadData(Services.Webclient.GetTasksUrl, this.GetApiKey());
+                ArrayList tasks_db = this.ShowAppointmentTasks();
+                //Console.WriteLine(valuesTasks.ToString());
+                if (valuesTasks != null)
                 {
-                    Console.WriteLine(this.writeToTable(record.updateRecordString(), conn));
+                    foreach (JsonObject result in valuesTasks)
+                    {
+                        //Console.WriteLine(result.ToString());
+                        ToDoesRecord record = new ToDoesRecord(result);
+                        if (EntryIsinLocalDB(tasks_db, record))
+                        {
+                            Console.WriteLine(this.writeToTable(record.updateRecordString(), conn));
+                        }
+                        else
+                        {
+                            Console.WriteLine(this.writeToTable(record.createRecordString(), conn));
+                        }
+                    }
                 }
-                else
-                {
-                    Console.WriteLine(this.writeToTable(record.createRecordString(), conn));
-                }
-            }
             }
         }
         public ArrayList ShowAllAppointmentData()

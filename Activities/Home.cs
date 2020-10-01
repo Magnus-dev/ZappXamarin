@@ -28,15 +28,17 @@ namespace ZAPP
             foreach (AppointmentRecord value in result)
             {
                 ListRecord row = new ListRecord(value);
-                if (row.endTime == "")
+                if (row.endTime == ""&& row.appointmentTime <= DateTime.Now.AddDays(2))
                 {
                     records.Add(row);
                 }
                 
             }
+            List<ListRecord> recordsSorted = records.OrderBy(o=>o.appointmentTime).ToList();
+
             SetContentView(Resource.Layout.Home);
             listView = FindViewById<ListView>(Resource.Id.Overview);
-            listView.Adapter = new HomeListViewAdapter(this, records);
+            listView.Adapter = new HomeListViewAdapter(this, recordsSorted);
             listView.ItemClick += OnListItemClick;
         }
         protected void OnListItemClick(object sender, Android.Widget.AdapterView.ItemClickEventArgs e)
@@ -47,5 +49,14 @@ namespace ZAPP
 
             StartActivityForResult(intent, 0);
         }
+        //protected List<ListRecord> SortAppointmentDate(List<ListRecord> records)
+        //{
+        //    foreach ()
+        //    {
+
+        //    }
+            
+        //    return records;
+        //}
     }
 }
