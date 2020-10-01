@@ -7,6 +7,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Transitions;
 using Android.Views;
 using Android.Widget;
 using Xamarin.Essentials;
@@ -42,8 +43,10 @@ namespace ZAPP
             string answer = Services.Webclient.LoginRequest(email, password);
             if(answer == null)
             {
-                //var intent = new Intent(this, typeof(LoginActivity));
-                //StartActivityForResult(intent, 0);
+                TextView warning = FindViewById<TextView>(Resource.Id.Warning);
+                warning.Text = "Wrong Password or Username. Please try again.";
+                warning.Visibility = ViewStates.Visible ;
+                Toast.MakeText(this, "Please try again", ToastLength.Long).Show();
             }
             //if(answer == "not_found")
             //{
@@ -54,9 +57,10 @@ namespace ZAPP
             {
                 _database db = new _database(this);
                 db.SetApiKey(answer);
+                var intent = new Intent(this, typeof(SplashActivity));
+                StartActivityForResult(intent, 0);
             }
-            var intent = new Intent(this, typeof(SplashActivity));
-            StartActivityForResult(intent, 0);
+            
 
         }
     }

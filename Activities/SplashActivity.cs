@@ -21,7 +21,7 @@ namespace ZAPP
         {
             base.OnCreate(bundle);
             _database db = new _database(this);
-            db.ApiProcessing();
+            
             //db.showAllData();
             //Thread.Sleep(500);
             if (db.GetApiKey() == null)
@@ -30,7 +30,15 @@ namespace ZAPP
             }
             else
             {
+                bool success = db.ApiProcessing();
+                if (success == false)
+                {
+                    Toast.MakeText(this, "No Connection Could be Made, Please Try at a different Time!", ToastLength.Long).Show();
+                    Thread.Sleep(5000);
+                    Java.Lang.JavaSystem.Exit(0);
+                }
                 StartActivity(typeof(Home));
+                
             }
         }
         /* protected override void OnCreate(Bundle savedInstanceState)

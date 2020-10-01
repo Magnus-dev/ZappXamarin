@@ -23,6 +23,14 @@
     
     </FrameLayout>
     <TextView
+        android:text="Text"
+        android:layout_width="match_parent"
+        android:layout_height="48.4dp"
+        android:textSize="20dip"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="invisible"
+        android:id="@+id/Warning" />
+    <TextView
         android:text="Email"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"

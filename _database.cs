@@ -202,7 +202,7 @@ namespace ZAPP
             this.createDatabase();
         }
         // Calls the download method and processes this data to the local SQLite DB
-        public void ApiProcessing()
+        public bool ApiProcessing()
         {
             var conn = getDatabase();
             ArrayList appointment_db = this.ShowAllAppointmentData();
@@ -243,6 +243,16 @@ namespace ZAPP
                         }
                     }
                 }
+                if (valuesTasks == null)
+                {
+                    return false;
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+                
             }
         }
         public ArrayList ShowAllAppointmentData()
