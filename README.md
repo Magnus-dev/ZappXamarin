@@ -11,9 +11,9 @@ A planning App for health workers, to plan appointments and tasks that have to b
 
 
 <div>
-<img src= "./GitHubReadMe/Splashscreen.jpg" height= "150px" width= "auto"/>
-<img src= "./GitHubReadMe/Login.jpg" height= "150px" width= "auto"/>
-<img src= "./GitHubReadMe/Appointment.jpg" height= "150px" width= "auto"/>
-<img src= "./GitHubReadMe/Task.jpg" height= "150px" width= "auto"/>
+<img src= "./GitHubReadMe/Splashscreen.jpg" height= "250px" width= "auto"/>
+<img src= "./GitHubReadMe/Login.jpg" height= "250px" width= "auto"/>
+<img src= "./GitHubReadMe/Appointment.jpg" height= "250px" width= "auto"/>
+<img src= "./GitHubReadMe/Task.jpg" height= "250px" width= "auto"/>
 
 </div>  
