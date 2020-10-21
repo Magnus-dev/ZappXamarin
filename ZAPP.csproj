@@ -152,7 +152,15 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\check.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="GitHubReadMeImages\Screenshot_2020-10-21-09-39-31-763_com.companyname.zapp.jpg" />
+    <Content Include="GitHubReadMeImages\Screenshot_2020-10-21-09-44-39-343_com.companyname.zapp.jpg" />
+    <Content Include="GitHubReadMeImages\Screenshot_2020-10-21-09-44-43-328_com.companyname.zapp.jpg" />
+    <Content Include="GitHubReadMeImages\Screenshot_2020-10-21-09-44-51-912_com.companyname.zapp.jpg" />
+    <Content Include="GitHubReadMeImages\Screenshot_2020-10-21-09-44-56-314_com.companyname.zapp.jpg" />
+    <Content Include="GitHubReadMeImages\Screenshot_2020-10-21-09-45-07-121_com.companyname.zapp.jpg" />
+    <Content Include="GitHubReadMeImages\Screenshot_2020-10-21-09-51-08-873_com.companyname.zapp.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Appointment.xml" />
   </ItemGroup>

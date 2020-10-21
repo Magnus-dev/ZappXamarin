@@ -20,7 +20,7 @@ namespace ZAPP.Services
         //EDUCOM URL
         //public static string Url = "http://192.168.1.21:8080/api";
         // HOME URL
-        public static string Url = "http://192.168.178.33:8080/api";
+        public static string Url = "http://192.168.178.19:8080/api";
         public static string AuthUser = "/cockpit/authUser";
         public static string ApiTokenString = "?token=";
         public static string loginApiKey = "4cc34a901a055d1580f5ef92e99ce6";

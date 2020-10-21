@@ -31,13 +31,13 @@
         android:visibility="invisible"
         android:id="@+id/Warning" />
     <TextView
-        android:text="Email"
+        android:text="User name"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView1" />
     <EditText
-        android:inputType="textEmailAddress"
+        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="75.2dp"
         android:id="@+id/Email"
